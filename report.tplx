@@ -1,0 +1,203 @@
+((= *** Custom style for notebook latex and pdf export *** =))
+% Default to the notebook output style
+((* if not cell_style is defined *))
+    ((* set cell_style = 'style_ipython.tplx' *))
+((* endif *))
+
+% Inherit from the specified cell style.
+((* extends cell_style *))
+
+%===============================================================================
+% Custom definitions
+%===============================================================================
+((* block definitions *))
+    ((( super() )))
+
+    % Pygments definitions
+    ((( resources.latex.pygments_definitions )))
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.3, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+    \usepackage{minted}
+    \usepackage{tcolorbox}
+    \definecolor{uam_ligth_green}{RGB}{137,184,28}
+    \definecolor{uam_medium_ligth_green}{RGB}{210,254,201}
+    \definecolor{uam_extra_ligth_green}{RGB}{245,255,255}
+    \definecolor{uam_ligth_blue}{RGB}{0,161,221}
+    \definecolor{uam_extra_ligth_blue}{RGB}{200,255,255}
+    \definecolor{uam_dark_green}{RGB}{24,165,94}
+    \definecolor{uam_dark_blue}{RGB}{66,123,188}
+    \definecolor{lgray}{gray}{0.8}
+    \definecolor{vlgray}{gray}{0.98}
+    \definecolor{linkcolor}{RGB}{11,99,58}
+    \tcbuselibrary{minted, breakable, skins}
+    \newtcblisting[auto counter,number within=subsection]{langinput}[2][]{
+      listing only, colback=uam_extra_ligth_green, colframe=uam_ligth_green,
+      breakable, left=5mm,enhanced,
+      overlay={\begin{tcbclipinterior}\fill[uam_medium_ligth_green] (frame.south west)
+      rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}},
+      title=Script \thetcbcounter \space (#2),
+      minted language=#2,
+      minted options={mathescape, breaklines, breakanywhere, fontsize=\small, linenos, numbersep=3mm}
+    }
+
+    \newtcblisting{langoutput}{
+      listing only, colback=white, colframe=uam_ligth_blue,
+      breakable,
+      title=Output,
+      minted language=text,
+      minted options={mathescape, breaklines, breakanywhere, fontsize=\small}
+    }
+
+    \newtcblisting{displayoutput}{
+      listing only, colback=white, colframe=uam_dark_blue,
+      breakable,
+      title=Display output,
+      minted language=text,
+      minted options={mathescape, breaklines, breakanywhere, fontsize=\small}
+    }
+
+
+((* endblock definitions *))
+
+%===============================================================================
+% Doc Class
+%===============================================================================
+((* block docclass *))
+
+\documentclass[11pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{placeins}
+\usepackage{amssymb,amsmath,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\usepackage{mathtools} % Bonus
+
+\AtBeginDocument{
+\heavyrulewidth=.08em
+\lightrulewidth=.05em
+\cmidrulewidth=.03em
+\belowrulesep=.65ex
+\belowbottomsep=0pt
+\aboverulesep=.4ex
+\abovetopsep=0pt
+\cmidrulesep=\doublerulesep
+\cmidrulekern=.5em
+\defaultaddspace=.5em
+}
+
+((* endblock docclass *))
+
+%===============================================================================
+% Collapsible Headings
+%===============================================================================
+((* block any_cell scoped *))
+((*- if cell.metadata["latex_metadata"] and cell.metadata["latex_metadata"].hidden -*))
+((*- else -*))
+    ((( super() )))
+((*- endif -*))
+((* endblock any_cell *))
+
+%===============================================================================
+% Input
+%===============================================================================
+
+((* block input scoped *))
+    ((( '\n'  )))
+((*- if cell.metadata.hide_input or nb.metadata.hide_input -*))
+((*- else -*))
+((*- if cell.metadata["latex_metadata"] and cell.metadata["latex_metadata"]["lexer"] -*))
+  ((*- set lang_for_code = cell.metadata["latex_metadata"]["lexer"] -*))
+((*- elif cell.metadata["kernel"] -*))
+    ((*- set lang_for_code = cell.metadata["kernel"] -*))
+((*- elif cell.source[0:2] == "%%" -*))
+    ((*- set lang_for_code = "text" -*))
+((*- else -*))
+  ((*- set lang_for_code = "python" -*))
+((*- endif -*))
+\begin{langinput}{((( lang_for_code )))}
+((( cell.source )))
+\end{langinput}
+((*- endif -*))
+((* endblock input *))
+
+%===============================================================================
+% Output
+%===============================================================================
+
+((* block execute_result scoped *))
+    ((( '\n'  )))
+((*- if cell.metadata.hide_output -*))
+((*- else -*))
+\begin{displayoutput}
+ ((( super() )))
+\end{displayoutput}
+((*- endif -*))
+((* endblock execute_result *))
+
+% Display stream ouput with coloring
+((* block stream *))
+\begin{langoutput}
+((( output.text )))
+\end{langoutput}
+((* endblock stream *))
+
+%==============================================================================
+% Support Macros
+%==============================================================================
+
+% Name: draw_prompt
+% Purpose: Renders an output/input prompt
+((* macro draw_cell_no_prompt(text, cell, prompt, prompt_color) -*))
+    ((*- if cell.execution_count is defined -*))
+    ((*- set execution_count = "" ~ (cell.execution_count | replace(None, " ")) -*))
+    ((*- else -*))
+    ((*- set execution_count = " " -*))
+    ((*- endif -*))
+    ((*- set indention =  " " * (execution_count | length + 4) -*))
+\begin{Verbatim}[commandchars=\\\{\}]
+((( text )))
+\end{Verbatim}
+((*- endmacro *))
+
+((* macro custom_add_prompt(text, cell, prompt, prompt_color) -*))
+    ((*- if cell.execution_count is defined -*))
+    ((*- set execution_count = "" ~ (cell.execution_count | replace(None, " ")) -*))
+    ((*- else -*))
+    ((*- set execution_count = " " -*))
+    ((*- endif -*))
+    ((*- set indention =  " " * (execution_count | length + 7) -*))
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\scriptsize]
+((( text | add_prompts(first='{\color{' ~ prompt_color ~ '}' ~ prompt ~ '[{\\color{' ~ prompt_color ~ '}' ~ execution_count ~ '}]:} ', cont=indention) )))
+\end{Verbatim}
+((*- endmacro *))
+
+% Author and Title from metadata
+((* block maketitle *))
+
+((*- if nb.metadata["latex_metadata"]: -*))
+((*- if nb.metadata["latex_metadata"]["author"]: -*))
+\author{((( nb.metadata["latex_metadata"]["author"] )))}
+((*- endif *))
+((*- else -*))
+\author{Fernando Freire}
+((*- endif *))
+
+((*- if nb.metadata["latex_metadata"]: -*))
+((*- if nb.metadata["latex_metadata"]["title"]: -*))
+  \title{((( nb.metadata["latex_metadata"]["title"] )))}
+((*- endif *))
+((*- else -*))
+  \title{Article}
+((*- endif *))
+
+\maketitle
+((* endblock maketitle *))
+
+((* block abstract *))
+\tableofcontents
+\pagebreak
+((* endblock abstract *))
