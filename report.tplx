@@ -35,7 +35,7 @@
     \tcbuselibrary{minted, breakable, skins}
     \newtcblisting[auto counter,number within=subsection]{langinput}[2][]{
       listing only, colback=uam_extra_ligth_green, colframe=uam_ligth_green,
-      breakable, left=5mm,enhanced,
+      breakable, left=5mm, enhanced,
       overlay={\begin{tcbclipinterior}\fill[uam_medium_ligth_green] (frame.south west)
       rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}},
       title=Script \thetcbcounter \space (#2),
@@ -45,7 +45,7 @@
 
     \newtcblisting{langoutput}{
       listing only, colback=white, colframe=uam_ligth_blue,
-      breakable,
+      breakable, enhanced,
       title=Output,
       minted language=text,
       minted options={mathescape, breaklines, breakanywhere, fontsize=\small}
@@ -53,11 +53,27 @@
 
     \newtcblisting{displayoutput}{
       listing only, colback=white, colframe=uam_dark_blue,
-      breakable,
+      breakable, enhanced,
       title=Display output,
       minted language=text,
       minted options={mathescape, breaklines, breakanywhere, fontsize=\small}
     }
+
+    \usepackage[framemethod=TikZ]{mdframed}
+
+    \mdfdefinestyle{uam_style1}{
+      backgroundcolor=uam_extra_ligth_green,
+      linecolor=uam_ligth_green,
+      roundcorner=10pt
+    }
+
+    \let\svfigure\figure
+    \let\endsvfigure\endfigure
+    \renewenvironment{figure}
+    {\begin{svfigure}[ht]\begin{mdframed}[style=uam_style1]}
+    {\end{mdframed}\end{svfigure}}
+
+
 
 
 ((* endblock definitions *))
@@ -68,7 +84,6 @@
 ((* block docclass *))
 
 \documentclass[11pt]{article}
-\usepackage[margin=0.5in]{geometry}
 \usepackage{placeins}
 \usepackage{amssymb,amsmath,amsthm}
 \newtheorem{theorem}{Theorem}
@@ -107,7 +122,7 @@
 
 ((* block input scoped *))
     ((( '\n'  )))
-((*- if cell.metadata.hide_input or nb.metadata.hide_input -*))
+((*- if (cell.metadata["latex_metadata"] and cell.metadata["latex_metadata"].hide_input) or (nb.metadata["latex_metadata"] and nb.metadata["latex_metadata"].hide_input) -*))
 ((*- else -*))
 ((*- if cell.metadata["latex_metadata"] and cell.metadata["latex_metadata"]["lexer"] -*))
   ((*- set lang_for_code = cell.metadata["latex_metadata"]["lexer"] -*))
@@ -130,7 +145,7 @@
 
 ((* block execute_result scoped *))
     ((( '\n'  )))
-((*- if cell.metadata.hide_output -*))
+((*- if cell.metadata["latex_metadata"] and cell.metadata["latex_metadata"].hide_output -*))
 ((*- else -*))
 \begin{displayoutput}
  ((( super() )))
