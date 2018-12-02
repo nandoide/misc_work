@@ -192,18 +192,14 @@
 % Author and Title from metadata
 ((* block maketitle *))
 
-((*- if nb.metadata["latex_metadata"]: -*))
-((*- if nb.metadata["latex_metadata"]["author"]: -*))
+((*- if nb.metadata["latex_metadata"] and  nb.metadata["latex_metadata"]["author"] -*))
 \author{((( nb.metadata["latex_metadata"]["author"] )))}
-((*- endif *))
 ((*- else -*))
 \author{Fernando Freire}
 ((*- endif *))
 
-((*- if nb.metadata["latex_metadata"]: -*))
-((*- if nb.metadata["latex_metadata"]["title"]: -*))
+((*- if nb.metadata["latex_metadata"] and nb.metadata["latex_metadata"]["title"] -*))
   \title{((( nb.metadata["latex_metadata"]["title"] )))}
-((*- endif *))
 ((*- else -*))
   \title{Article}
 ((*- endif *))
