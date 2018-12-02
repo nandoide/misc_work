@@ -67,12 +67,13 @@
       roundcorner=10pt
     }
 
+    \begin{comment}
     \let\svfigure\figure
     \let\endsvfigure\endfigure
     \renewenvironment{figure}
-    {\begin{svfigure}[ht]\begin{mdframed}[style=uam_style1]}
+    {\begin{svfigure}[!ht]\begin{mdframed}[style=uam_style1]}
     {\end{mdframed}\end{svfigure}}
-
+    \end{comment}
 
 ((* endblock definitions *))
 
