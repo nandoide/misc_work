@@ -154,9 +154,13 @@
 
 % Display stream ouput with coloring
 ((* block stream *))
+   ((( '\n'  )))
+((*- if cell.metadata["latex_metadata"] and cell.metadata["latex_metadata"].hide_output -*))
+((*- else -*))
 \begin{langoutput}
 ((( output.text )))
 \end{langoutput}
+((*- endif -*))
 ((* endblock stream *))
 
 %==============================================================================
