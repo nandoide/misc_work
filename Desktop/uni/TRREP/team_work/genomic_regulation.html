@@ -13315,10 +13315,10 @@ chr16	735800	736800	E9
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="prompt input_prompt">In&nbsp;[270]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> bed1.bed
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> files/test_tracks/bed1.bed
 chr16	60400	61400	E9
 chr16	72600	72800	E9
 chr16	115200	116000	E9
@@ -13355,7 +13355,7 @@ chr16	1019400	1019600	E9
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Overwriting bed1.bed
+<pre>Writing files/test_tracks/bed1.bed
 </pre>
 </div>
 </div>
@@ -13366,10 +13366,10 @@ chr16	1019400	1019600	E9
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="prompt input_prompt">In&nbsp;[272]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> bed2.bed
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> files/test_tracks/bed2.bed
 chr16	60400	61400	E9
 chr16	72400	72800	E9
 chr16	115000	116400	E9
@@ -13409,7 +13409,7 @@ chr16	735800	736800	E9
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Overwriting bed2.bed
+<pre>Writing files/test_tracks/bed2.bed
 </pre>
 </div>
 </div>
@@ -13420,10 +13420,10 @@ chr16	735800	736800	E9
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[85]:</div>
+<div class="prompt input_prompt">In&nbsp;[271]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> dnase1.peaks.bed
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> files/test_tracks/dnase1.peaks.bed
 chr1	770942	771278	chr1.9	584	.	0.039	1.79	-1	151
 chr1	771678	771933	chr1.10	568	.	0.0343	1.56	-1	121
 chr1	773279	773398	chr1.11	555	.	0.0303	1.38	-1	49
@@ -13469,7 +13469,7 @@ chr16	116533	116836	chr16.22	568	.	0.0343	1.56	-1	131
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Writing dnase1.peaks.bed
+<pre>Writing files/test_tracks/dnase1.peaks.bed
 </pre>
 </div>
 </div>
@@ -13487,14 +13487,16 @@ chr16	116533	116836	chr16.22	568	.	0.0343	1.56	-1	131
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[218]:</div>
+<div class="prompt input_prompt">In&nbsp;[298]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span> <span class="k">as</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
         <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -13514,17 +13516,33 @@ chr16	116533	116836	chr16.22	568	.	0.0343	1.56	-1	131
     <span class="n">bed_line</span> <span class="o">=</span> <span class="n">chrom</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">start</span><span class="p">)</span> <span class="o">+</span>  <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">end</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">feature</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
     <span class="k">return</span> <span class="n">bed_line</span>
 
-<span class="k">def</span> <span class="nf">bed_coverage</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">bed_coverage</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the acummulated length of all the segments of the bed file filename</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
     <span class="n">coverage</span> <span class="o">=</span> <span class="mi">0</span> 
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">_</span> <span class="p">,</span> <span class="n">f1_segment_start</span><span class="p">,</span> <span class="n">f1_segment_end</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_parts</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
         <span class="n">coverage</span> <span class="o">+=</span> <span class="n">f1_segment_end</span> <span class="o">+</span> <span class="n">f1_segment_start</span>
     <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">coverage</span>
+
+<span class="k">def</span> <span class="nf">bed_segment_count_by_re_feature</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">re_feature</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the segment count by feature name of the bed file filename. </span>
+<span class="sd">    The feature is informed as a regexp</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">segment_count</span> <span class="o">=</span> <span class="mi">0</span> 
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">_</span> <span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">segment_feature</span> <span class="o">=</span> <span class="n">get_parts</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">re_feature</span><span class="p">,</span> <span class="n">segment_feature</span><span class="p">):</span>
+            <span class="n">segment_count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">segment_count</span>
 
 <span class="k">def</span> <span class="nf">intersect_bed</span><span class="p">(</span><span class="n">input_dir</span><span class="p">,</span> <span class="n">input_file1</span><span class="p">,</span> <span class="n">input_file2</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">chrom</span><span class="o">=</span><span class="s2">&quot;chr16&quot;</span><span class="p">,</span> 
                   <span class="n">f1_feature_filter</span><span class="o">=</span><span class="s2">&quot;E9&quot;</span><span class="p">,</span> <span class="n">f2_feature_filter</span><span class="o">=</span><span class="s2">&quot;E9&quot;</span><span class="p">,</span> <span class="n">output_feature</span><span class="o">=</span><span class="s2">&quot;E9&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span>
@@ -13600,23 +13618,25 @@ chr16	116533	116836	chr16.22	568	.	0.0343	1.56	-1	131
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[226]:</div>
+<div class="prompt input_prompt">In&nbsp;[278]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">PATH</span> <span class="o">=</span> <span class="s2">&quot;RESULTS/Modelo_11_estados&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">PATH</span> <span class="o">=</span> <span class="s2">&quot;files/tracks&quot;</span>
+<span class="n">TEST_PATH</span> <span class="o">=</span> <span class="s2">&quot;files/test_tracks&quot;</span>
 <span class="n">M1_FILE</span> <span class="o">=</span> <span class="s2">&quot;Monocyte1_11_Master_11_segments.bed&quot;</span>
 <span class="n">M2_FILE</span> <span class="o">=</span> <span class="s2">&quot;Monocyte2_11_Master_11_segments.bed&quot;</span>
 <span class="n">M1_FILE_TEST</span> <span class="o">=</span> <span class="s2">&quot;bed1.bed&quot;</span>
 <span class="n">M2_FILE_TEST</span> <span class="o">=</span> <span class="s2">&quot;bed2.bed&quot;</span>
 <span class="n">SEP</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span>
-<span class="n">CHR</span> <span class="o">=</span> <span class="s2">&quot;chr16&quot;</span>
+<span class="n">CHROM</span> <span class="o">=</span> <span class="s2">&quot;chr16&quot;</span>
 <span class="n">STATE</span> <span class="o">=</span> <span class="s2">&quot;E9&quot;</span>
 
-<span class="n">intersect_bed</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">M1_FILE_TEST</span><span class="p">,</span> <span class="n">M2_FILE_TEST</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;E9_segments_test.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span><span class="o">=</span><span class="n">CHR</span><span class="p">,</span> 
-                  <span class="n">f1_feature_filter</span><span class="o">=</span><span class="n">STATE</span><span class="p">,</span> <span class="n">f2_feature_filter</span><span class="o">=</span><span class="n">STATE</span><span class="p">,</span> <span class="n">output_feature</span><span class="o">=</span><span class="n">STATE</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
-                  <span class="n">drop_feature_threshold</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">intersect_bed</span><span class="p">(</span><span class="n">TEST_PATH</span><span class="p">,</span> <span class="n">M1_FILE_TEST</span><span class="p">,</span> <span class="n">M2_FILE_TEST</span><span class="p">,</span> <span class="n">TEST_PATH</span><span class="p">,</span> 
+                <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_segments_test.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span><span class="o">=</span><span class="n">CHROM</span><span class="p">,</span> 
+                <span class="n">f1_feature_filter</span><span class="o">=</span><span class="n">STATE</span><span class="p">,</span> <span class="n">f2_feature_filter</span><span class="o">=</span><span class="n">STATE</span><span class="p">,</span> <span class="n">output_feature</span><span class="o">=</span><span class="n">STATE</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
+                <span class="n">drop_feature_threshold</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 
-<span class="n">head</span><span class="p">(</span><span class="s2">&quot;E9_segments_test.bed&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_segments_test.bed&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13633,8 +13653,7 @@ chr16	116533	116836	chr16.22	568	.	0.0343	1.56	-1	131
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>here
-chr16	60400	61400	E9
+<pre>chr16	60400	61400	E9
 chr16	115200	116000	E9
 chr16	146600	147400	E9
 chr16	156600	157600	E9
@@ -13663,14 +13682,14 @@ chr16	710800	711200	E9
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[215]:</div>
+<div class="prompt input_prompt">In&nbsp;[279]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersect_bed</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">M1_FILE</span><span class="p">,</span> <span class="n">M2_FILE</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;E9_segments.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span><span class="o">=</span><span class="s2">&quot;chr16&quot;</span><span class="p">,</span> 
-                  <span class="n">f1_feature_filter</span><span class="o">=</span><span class="s2">&quot;E9&quot;</span><span class="p">,</span> <span class="n">f2_feature_filter</span><span class="o">=</span><span class="s2">&quot;E9&quot;</span><span class="p">,</span> <span class="n">output_feature</span><span class="o">=</span><span class="s2">&quot;E9&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
-                  <span class="n">drop_feature_threshold</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersect_bed</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">M1_FILE</span><span class="p">,</span> <span class="n">M2_FILE</span><span class="p">,</span> <span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_segments.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span><span class="o">=</span><span class="n">CHROM</span><span class="p">,</span> 
+                  <span class="n">f1_feature_filter</span> <span class="o">=</span> <span class="n">STATE</span><span class="p">,</span> <span class="n">f2_feature_filter</span> <span class="o">=</span> <span class="n">STATE</span><span class="p">,</span> <span class="n">output_feature</span> <span class="o">=</span> <span class="n">STATE</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
+                  <span class="n">drop_feature_threshold</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
 
-<span class="n">head</span><span class="p">(</span><span class="s2">&quot;E9_segments.bed&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_segments.bed&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13709,7 +13728,7 @@ chr16	629000	629400	E9
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Segment-annotation">Segment annotation<a class="anchor-link" href="#Segment-annotation">&#182;</a></h2><p>Anotar los segmentos. Como mínimo, se deberá dar el porcentaje de segmentos que solapan con protein-coding genes en dicho cromosoma.</p>
+<h2 id="Segment-annotation">Segment annotation<a class="anchor-link" href="#Segment-annotation">&#182;</a></h2><p>Annotate the segments. At a minimum, the percentage of segments that overlap with protein-coding genes in said chromosome should be given.</p>
 
 </div>
 </div>
@@ -13717,8 +13736,154 @@ chr16	629000	629400	E9
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Tracks-to-annotate">Tracks to annotate<a class="anchor-link" href="#Tracks-to-annotate">&#182;</a></h3><p>The tracks are obtained from <a href="https://genome.ucsc.edu/cgi-bin/hgTables">https://genome.ucsc.edu/cgi-bin/hgTables</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Annotate-gene-overlap">Annotate gene overlap<a class="anchor-link" href="#Annotate-gene-overlap">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[310]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">OVERLAP_TYPE</span> <span class="o">=</span> <span class="s2">&quot;_gene_overlap&quot;</span>
+<span class="n">OUTPUT_FEATURE</span> <span class="o">=</span> <span class="n">STATE</span> <span class="o">+</span> <span class="n">OVERLAP_TYPE</span>
+
+<span class="n">intersect_bed</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_segments.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;hg19_genes.bed&quot;</span><span class="p">,</span> 
+                  <span class="n">PATH</span><span class="p">,</span> <span class="n">OUTPUT_FEATURE</span> <span class="o">+</span> <span class="s2">&quot;_annotate.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span> <span class="o">=</span> <span class="n">CHROM</span><span class="p">,</span> 
+                  <span class="n">f1_feature_filter</span> <span class="o">=</span> <span class="n">STATE</span><span class="p">,</span> <span class="n">f2_feature_filter</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> 
+                  <span class="n">output_feature</span> <span class="o">=</span> <span class="n">OUTPUT_FEATURE</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
+                  <span class="n">drop_feature_threshold</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">output_mode</span><span class="o">=</span><span class="s2">&quot;annotate&quot;</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">OUTPUT_FEATURE</span> <span class="o">+</span> <span class="s2">&quot;_annotate.bed&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">overlap_segment_count</span> <span class="o">=</span> <span class="n">bed_segment_count_by_re_feature</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">OUTPUT_FEATURE</span> <span class="o">+</span> <span class="s2">&quot;_annotate.bed&quot;</span><span class="p">,</span> 
+                                                        <span class="n">OUTPUT_FEATURE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count of state segments overlapped:&quot;</span><span class="p">,</span> <span class="n">overlap_segment_count</span><span class="p">)</span>
+<span class="n">total_segment_count</span> <span class="o">=</span> <span class="n">bed_segment_count_by_re_feature</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">OUTPUT_FEATURE</span> <span class="o">+</span> <span class="s2">&quot;_annotate.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count of all state segments&quot;</span><span class="p">,</span> <span class="n">total_segment_count</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percent overlapped state segments over total segments:&quot;</span><span class="p">,</span> 
+      <span class="n">overlap_segment_count</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">total_segment_count</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>chr16	60400	61400	E9
+chr16	72600	72800	E9
+chr16	115200	116000	E9+E9_gene_overlap
+chr16	146600	147400	E9+E9_gene_overlap
+chr16	156600	157600	E9+E9_gene_overlap
+chr16	167800	168200	E9+E9_gene_overlap
+chr16	412000	412600	E9
+chr16	441800	442200	E9+E9_gene_overlap
+chr16	537600	538000	E9+E9_gene_overlap
+chr16	597000	597400	E9+E9_gene_overlap
+chr16	629000	629400	E9
+
+Count of state segments overlapped: 173
+Count of all state segments 468
+Percent overlapped state segments over total segments: 36.965811965811966
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Annotate-exon-overlap">Annotate exon overlap<a class="anchor-link" href="#Annotate-exon-overlap">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[311]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">OVERLAP_TYPE</span> <span class="o">=</span> <span class="s2">&quot;_exon_overlap&quot;</span>
+<span class="n">OUTPUT_FEATURE</span> <span class="o">=</span> <span class="n">STATE</span> <span class="o">+</span> <span class="n">OVERLAP_TYPE</span>
+
+<span class="n">intersect_bed</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_segments.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;hg19_coding_exons.bed&quot;</span><span class="p">,</span> 
+                  <span class="n">PATH</span><span class="p">,</span> <span class="n">OUTPUT_FEATURE</span> <span class="o">+</span> <span class="s2">&quot;_annotate.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span> <span class="o">=</span> <span class="n">CHROM</span><span class="p">,</span> 
+                  <span class="n">f1_feature_filter</span> <span class="o">=</span> <span class="n">STATE</span><span class="p">,</span> <span class="n">f2_feature_filter</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> 
+                  <span class="n">output_feature</span> <span class="o">=</span> <span class="n">OUTPUT_FEATURE</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
+                  <span class="n">drop_feature_threshold</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">output_mode</span><span class="o">=</span><span class="s2">&quot;annotate&quot;</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">OUTPUT_FEATURE</span> <span class="o">+</span> <span class="s2">&quot;_annotate.bed&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">overlap_segment_count</span> <span class="o">=</span> <span class="n">bed_segment_count_by_re_feature</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">OUTPUT_FEATURE</span> <span class="o">+</span> <span class="s2">&quot;_annotate.bed&quot;</span><span class="p">,</span> 
+                                                        <span class="n">OUTPUT_FEATURE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count of state segments overlapped:&quot;</span><span class="p">,</span> <span class="n">overlap_segment_count</span><span class="p">)</span>
+<span class="n">total_segment_count</span> <span class="o">=</span> <span class="n">bed_segment_count_by_re_feature</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">OUTPUT_FEATURE</span> <span class="o">+</span> <span class="s2">&quot;_annotate.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count of all state segments&quot;</span><span class="p">,</span> <span class="n">total_segment_count</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percent overlapped state segments over total segments:&quot;</span><span class="p">,</span> 
+      <span class="n">overlap_segment_count</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">total_segment_count</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>chr16	60400	61400	E9
+chr16	72600	72800	E9
+chr16	115200	116000	E9
+chr16	146600	147400	E9
+chr16	156600	157600	E9
+chr16	167800	168200	E9
+chr16	412000	412600	E9
+chr16	441800	442200	E9
+chr16	537600	538000	E9
+chr16	597000	597400	E9+E9_exon_overlap
+chr16	629000	629400	E9
+
+Count of state segments overlapped: 11
+Count of all state segments 468
+Percent overlapped state segments over total segments: 2.3504273504273505
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="DNASE-I-overlap">DNASE I overlap<a class="anchor-link" href="#DNASE-I-overlap">&#182;</a></h2><p>Download the peaks of DNase I in monocytes of ENCODE for chr16 and calculate the percentage of overlap between DNaseI-peaks and your work segments. Use the file wgEncodeOpenChromDnaseMonocd14Pk.narrowPeak.gz in:
-<a href="http://hgdownload.cse.ucsc.edu/goldenpath/hg19/encodeDCC/wgEncodeOpenChrom/Dnase">http://hgdownload.cse.ucsc.edu/goldenpath/hg19/encodeDCC/wgEncodeOpenChrom/Dnase</a></p>
+<a href="http://hgdownload.cse.ucsc.edu/goldenpath/hg19/encodeDCC/wgEncodeOpenChromDnase">http://hgdownload.cse.ucsc.edu/goldenpath/hg19/encodeDCC/wgEncodeOpenChromDnase</a></p>
 
 </div>
 </div>
@@ -13732,13 +13897,15 @@ chr16	629000	629400	E9
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[219]:</div>
+<div class="prompt input_prompt">In&nbsp;[295]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersect_bed</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;E9_segments_test.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;dnase1.peaks.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;E9_dnase1_overlap_test.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span><span class="o">=</span><span class="s2">&quot;chr16&quot;</span><span class="p">,</span> 
-                  <span class="n">f1_feature_filter</span><span class="o">=</span><span class="s2">&quot;E9&quot;</span><span class="p">,</span> <span class="n">f2_feature_filter</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">output_feature</span><span class="o">=</span><span class="s2">&quot;E9_dnase1_overlap&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersect_bed</span><span class="p">(</span><span class="n">TEST_PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_segments_test.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;dnase1.peaks.bed&quot;</span><span class="p">,</span> <span class="n">TEST_PATH</span><span class="p">,</span> 
+                  <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_dnase1_overlap_test.bed&quot;</span><span class="p">,</span>
+                  <span class="n">chrom</span> <span class="o">=</span> <span class="n">CHROM</span><span class="p">,</span> <span class="n">f1_feature_filter</span> <span class="o">=</span> <span class="n">STATE</span><span class="p">,</span> <span class="n">f2_feature_filter</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> 
+                  <span class="n">output_feature</span> <span class="o">=</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_dnase1_overlap&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
                   <span class="n">drop_feature_threshold</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">head</span><span class="p">(</span><span class="s2">&quot;E9_dnase1_overlap_test.bed&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">TEST_PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span><span class="s2">&quot;_dnase1_overlap_test.bed&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13755,43 +13922,7 @@ chr16	629000	629400	E9
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>here
-chr16	115448	116000	E9_dnase1_overlap
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[182]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersect_bed</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;E9_segments.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;dnase1.peaks.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;E9_dnase1_overlap_test.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span><span class="o">=</span><span class="s2">&quot;chr16&quot;</span><span class="p">,</span> 
-                  <span class="n">f1_feature_filter</span><span class="o">=</span><span class="s2">&quot;E9&quot;</span><span class="p">,</span> <span class="n">f2_feature_filter</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">output_feature</span><span class="o">=</span><span class="s2">&quot;E9_dnase1_overlap&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
-                  <span class="n">drop_feature_threshold</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">head</span><span class="p">(</span><span class="s2">&quot;E9_dnase1_overlap_test.bed&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>chr16	72620	72800	E9_dnase1_overlap
-chr16	115448	116000	E9_dnase1_overlap
+<pre>chr16	115448	116000	E9_dnase1_overlap
 </pre>
 </div>
 </div>
@@ -13807,16 +13938,31 @@ chr16	115448	116000	E9_dnase1_overlap
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Overlap-by-coverage">Overlap by coverage<a class="anchor-link" href="#Overlap-by-coverage">&#182;</a></h4><p>Overlap calculated as percent ratio between sum of base pair overlapped and sum of total base pair covered by all the E9 segments. This method doesn't have much sense because it depends of the arbitrary sensitivity of the dna base segments (200 bps in the case of chromatin states).</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[216]:</div>
+<div class="prompt input_prompt">In&nbsp;[296]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersect_bed</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;E9_segments.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;wgEncodeOpenChromDnaseMonocd14Pk.narrowPeak&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> 
-                  <span class="s2">&quot;E9_dnase1_overlap.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span><span class="o">=</span><span class="s2">&quot;chr16&quot;</span><span class="p">,</span> 
-                  <span class="n">f1_feature_filter</span><span class="o">=</span><span class="s2">&quot;E9&quot;</span><span class="p">,</span> <span class="n">f2_feature_filter</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">output_feature</span><span class="o">=</span><span class="s2">&quot;E9_dnase1_overlap&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
-                  <span class="n">drop_feature_threshold</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">head</span><span class="p">(</span><span class="s2">&quot;E9_dnase1_overlap.bed&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersect_bed</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_segments.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;wgEncodeOpenChromDnaseMonocd14Pk.narrowPeak.bed&quot;</span><span class="p">,</span> 
+                  <span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_dnase1_overlap.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span> <span class="o">=</span> <span class="n">CHROM</span><span class="p">,</span> 
+                  <span class="n">f1_feature_filter</span> <span class="o">=</span> <span class="n">STATE</span><span class="p">,</span> <span class="n">f2_feature_filter</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> 
+                  <span class="n">output_feature</span> <span class="o">=</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_dnase1_overlap&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="n">SEP</span><span class="p">,</span>
+                  <span class="n">drop_feature_threshold</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="s2">&quot;E9_dnase1_overlap.bed&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">coverage_peaks</span> <span class="o">=</span> <span class="n">bed_coverage</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="s2">&quot;wgEncodeOpenChromDnaseMonocd14Pk.narrowPeak.bed&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">coverage_state</span> <span class="o">=</span> <span class="n">bed_coverage</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_segments.bed&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coverage DNASE peaks:&quot;</span><span class="p">,</span> <span class="n">coverage_peaks</span><span class="p">,</span> <span class="s2">&quot;bps&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coverage E9:&quot;</span><span class="p">,</span> <span class="n">coverage_state</span><span class="p">,</span> <span class="s2">&quot;bps&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percent overlap over total coverage peaks:&quot;</span><span class="p">,</span> <span class="n">coverage_state</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">coverage_peaks</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13844,6 +13990,10 @@ chr16	537761	538000	E9_dnase1_overlap
 chr16	597000	597400	E9_dnase1_overlap
 chr16	629000	629400	E9_dnase1_overlap
 chr16	661000	661548	E9_dnase1_overlap
+
+Coverage DNASE peaks: 22653113851288 bps
+Coverage E9: 43366167200 bps
+Percent overlap over total coverage peaks: 0.19143578884866774
 </pre>
 </div>
 </div>
@@ -13852,16 +14002,36 @@ chr16	661000	661548	E9_dnase1_overlap
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Overlap-by-segment-count">Overlap by segment count<a class="anchor-link" href="#Overlap-by-segment-count">&#182;</a></h4><p>Overlap calculated as percent ratio between segment count of overlapped E9-DNASE segments and total count of E9 segments.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[225]:</div>
+<div class="prompt input_prompt">In&nbsp;[300]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersect_bed</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;E9_segments.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;wgEncodeOpenChromDnaseMonocd14Pk.narrowPeak&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> 
-                  <span class="s2">&quot;E9_dnase1_overlap_annotate.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span><span class="o">=</span><span class="s2">&quot;chr16&quot;</span><span class="p">,</span> 
-                  <span class="n">f1_feature_filter</span><span class="o">=</span><span class="s2">&quot;E9&quot;</span><span class="p">,</span> <span class="n">f2_feature_filter</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">output_feature</span><span class="o">=</span><span class="s2">&quot;E9_dnase1_overlap&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
-                  <span class="n">drop_feature_threshold</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">output_mode</span><span class="o">=</span><span class="s2">&quot;annotate&quot;</span><span class="p">)</span>
-<span class="n">head</span><span class="p">(</span><span class="s2">&quot;E9_dnase1_overlap_annotate.bed&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">OUTPUT_FEATURE</span> <span class="o">=</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_dnase1_overlap&quot;</span>
+
+<span class="n">intersect_bed</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_segments.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;wgEncodeOpenChromDnaseMonocd14Pk.narrowPeak.bed&quot;</span><span class="p">,</span> 
+                  <span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_dnase1_overlap_annotate.bed&quot;</span><span class="p">,</span> <span class="n">chrom</span> <span class="o">=</span> <span class="n">CHROM</span><span class="p">,</span> 
+                  <span class="n">f1_feature_filter</span> <span class="o">=</span> <span class="n">STATE</span><span class="p">,</span> <span class="n">f2_feature_filter</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> 
+                  <span class="n">output_feature</span> <span class="o">=</span> <span class="n">OUTPUT_FEATURE</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">SEP</span><span class="p">,</span>
+                  <span class="n">drop_feature_threshold</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">output_mode</span><span class="o">=</span><span class="s2">&quot;annotate&quot;</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_dnase1_overlap_annotate.bed&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">overlap_segment_count</span> <span class="o">=</span> <span class="n">bed_segment_count_by_re_feature</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_dnase1_overlap_annotate.bed&quot;</span><span class="p">,</span> 
+                                                        <span class="n">OUTPUT_FEATURE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count of state segments overlapped:&quot;</span><span class="p">,</span> <span class="n">overlap_segment_count</span><span class="p">)</span>
+<span class="n">total_segment_count</span> <span class="o">=</span> <span class="n">bed_segment_count_by_re_feature</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_dnase1_overlap_annotate.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count of all state segments&quot;</span><span class="p">,</span> <span class="n">total_segment_count</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percent overlapped state segments over total segments:&quot;</span><span class="p">,</span> 
+      <span class="n">overlap_segment_count</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">total_segment_count</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13878,8 +14048,7 @@ chr16	661000	661548	E9_dnase1_overlap
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>here
-chr16	60400	61400	E9
+<pre>chr16	60400	61400	E9
 chr16	72600	72800	E9+E9_dnase1_overlap
 chr16	115200	116000	E9+E9_dnase1_overlap
 chr16	146600	147400	E9+E9_dnase1_overlap
@@ -13890,6 +14059,10 @@ chr16	441800	442200	E9+E9_dnase1_overlap
 chr16	537600	538000	E9+E9_dnase1_overlap
 chr16	597000	597400	E9+E9_dnase1_overlap
 chr16	629000	629400	E9+E9_dnase1_overlap
+
+Count of state segments overlapped: 127
+Count of all state segments 468
+Percent overlapped state segments over total segments: 27.136752136752136
 </pre>
 </div>
 </div>
@@ -13898,22 +14071,57 @@ chr16	629000	629400	E9+E9_dnase1_overlap
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Automated-verifications">Automated verifications<a class="anchor-link" href="#Automated-verifications">&#182;</a></h4>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[224]:</div>
+<div class="prompt input_prompt">In&nbsp;[301]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">segment_count_annotate</span> <span class="o">=</span> <span class="n">bed_segment_count_by_re_feature</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_dnase1_overlap_annotate.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">segment_count</span> <span class="o">=</span> <span class="n">bed_segment_count_by_re_feature</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">STATE</span> <span class="o">+</span> <span class="s2">&quot;_segments.bed&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">segment_count_annotate</span> <span class="o">==</span> <span class="n">segment_count</span><span class="p">,</span>\
+        <span class="s2">&quot;Count of annotated segments not equal to count of original segments&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Visual-inspection">Visual inspection<a class="anchor-link" href="#Visual-inspection">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[305]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
-<span class="c1"># Merge </span>
-wc -l E9_dnase1_overlap_annotate.bed
-wc -l E9_segments.bed
-tail E9_dnase1_overlap_annotate.bed
+<span class="nb">export</span> <span class="nv">TRACKS</span><span class="o">=</span>files/tracks/
+<span class="nb">echo</span> <span class="s2">&quot;Counts&quot;</span>
+wc -l <span class="si">${</span><span class="nv">TRACKS</span><span class="si">}</span>E9_dnase1_overlap_annotate.bed
+wc -l <span class="si">${</span><span class="nv">TRACKS</span><span class="si">}</span>E9_segments.bed
+tail <span class="si">${</span><span class="nv">TRACKS</span><span class="si">}</span>E9_dnase1_overlap_annotate.bed
 <span class="nb">echo</span>
-tail E9_segments.bed
+tail <span class="si">${</span><span class="nv">TRACKS</span><span class="si">}</span>E9_segments.bed
 <span class="nb">echo</span>
-head E9_dnase1_overlap_annotate.bed
+head <span class="si">${</span><span class="nv">TRACKS</span><span class="si">}</span>E9_dnase1_overlap_annotate.bed
 <span class="nb">echo</span>
-head E9_segments.bed
+head <span class="si">${</span><span class="nv">TRACKS</span><span class="si">}</span>E9_segments.bed
+<span class="nb">echo</span>
+<span class="nb">echo</span> <span class="s2">&quot;Counts of annotations:&quot;</span>
+cat <span class="si">${</span><span class="nv">TRACKS</span><span class="si">}</span>E9_dnase1_overlap_annotate.bed <span class="p">|</span> grep <span class="s2">&quot;E9_dnase1_overlap&quot;</span> <span class="p">|</span> wc -l
+cat <span class="si">${</span><span class="nv">TRACKS</span><span class="si">}</span>E9_segments.bed <span class="p">|</span> grep <span class="s2">&quot;&quot;</span> <span class="p">|</span> wc -l
 </pre></div>
 
     </div>
@@ -13930,8 +14138,9 @@ head E9_segments.bed
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>     468 E9_dnase1_overlap_annotate.bed
-     468 E9_segments.bed
+<pre>Counts
+     468 files/tracks/E9_dnase1_overlap_annotate.bed
+     468 files/tracks/E9_segments.bed
 chr16	89233600	89234800	E9
 chr16	89527000	89527400	E9
 chr16	89623800	89624200	E9+E9_dnase1_overlap
@@ -13975,44 +14184,10 @@ chr16	412000	412600	E9
 chr16	441800	442200	E9
 chr16	537600	538000	E9
 chr16	597000	597400	E9
-</pre>
-</div>
-</div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[223]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">coverage_peaks</span> <span class="o">=</span> <span class="n">bed_coverage</span><span class="p">(</span><span class="s2">&quot;wgEncodeOpenChromDnaseMonocd14Pk.narrowPeak&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">coverage_E9</span> <span class="o">=</span> <span class="n">bed_coverage</span><span class="p">(</span><span class="s2">&quot;E9_segments.bed&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coverage DNASE peaks&quot;</span><span class="p">,</span> <span class="n">coverage_peaks</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coverage E9&quot;</span><span class="p">,</span> <span class="n">coverage_E9</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percent overlap over total coverage peaks:&quot;</span><span class="p">,</span> <span class="n">coverage_E9</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">coverage_peaks</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Coverage DNASE peaks 22653113851288
-Coverage E9 43366167200
-Percent overlap over total coverage peaks: 0.19143578884866774
+Counts of annotations:
+     127
+     468
 </pre>
 </div>
 </div>
@@ -14030,7 +14205,7 @@ Percent overlap over total coverage peaks: 0.19143578884866774
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[227]:</div>
+<div class="prompt input_prompt">In&nbsp;[309]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -14054,9 +14229,9 @@ jupyter nbconvert --to html_with_toclenvs genomic_regulation.ipynb <span class="
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>[NbConvertApp] Converting notebook genomic_regulation.ipynb to latex
-[NbConvertApp] Writing 41383 bytes to genomic_regulation.tex
+[NbConvertApp] Writing 47430 bytes to genomic_regulation.tex
 [NbConvertApp] Converting notebook genomic_regulation.ipynb to html_with_toclenvs
-[NbConvertApp] Writing 324970 bytes to genomic_regulation.html
+[NbConvertApp] Writing 343611 bytes to genomic_regulation.html
 </pre>
 </div>
 </div>
