@@ -13269,7 +13269,19 @@ What method is more robust to over-fitting?</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h2>
+<h2 id="Methods">Methods<a class="anchor-link" href="#Methods">&#182;</a></h2><p>These are the python methods that encapsulate the four learning methods.</p>
+<h3 id="Implementation-details">Implementation details<a class="anchor-link" href="#Implementation-details">&#182;</a></h3><p><strong>Quadratic Discriminant Analysis</strong></p>
+<p>Before training the classifier we have chosen a good value for the corresponding regularization hyper-parameter with a grid-search guided by cross-validation.</p>
+<p>The regularization parameter regularizes the covariance matrix estimate as $$(1-\lambda)\cdot \mathbf{\Sigma} + \lambda \cdot \mathbf{I}$$</p>
+<p><strong>Nearest Centroids</strong></p>
+<p>Before training the classifier we have chosen a good value for the shrinkage threshold hyper-parameter with a grid-search guided by cross-validation.</p>
+<p>This procedure leads to a reduction in the number of features, by zeroing all deltas that exceed the threshold.</p>
+<p>They take the form: 
+$$\mu_{kj} = m_j + \Delta_{kj}\,,$$ 
+where $\Delta_{kj}$ is the shrunken component</p>
+<p><strong>Selecting the best parameter value</strong></p>
+<p>To do so we compute the set of values with the maximum test data accuracy, and between then we choose the set of values that have the maximum train data accuracy. From this set we choose the lowest value.</p>
+
 </div>
 </div>
 </div>
@@ -13713,13 +13725,22 @@ True negative rate is: 1.000000
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2><p>We observe that <strong>QDA</strong> performs very poorly in the prostate dataset, given the high dimensionality of this dataset, which do not ease the accurate computation of the covariance matrices. Perhaps if we perform previously a dimensionality reduction by PCA, we'll improve this result.</p>
+<p><strong>NSC</strong> performs in this case much better due to the reduced number of parameters and the feature selection properties of this classifier and more consistently between both cases (prostate and breast).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Outputs">Outputs<a class="anchor-link" href="#Outputs">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[166]:</div>
+<div class="prompt input_prompt">In&nbsp;[175]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -13748,9 +13769,9 @@ jupyter nbconvert --to html_with_toclenvs classification_systems.ipynb <span cla
 [NbConvertApp] Making directory classification_systems_files
 [NbConvertApp] Making directory classification_systems_files
 [NbConvertApp] Making directory classification_systems_files
-[NbConvertApp] Writing 39449 bytes to classification_systems.tex
+[NbConvertApp] Writing 39463 bytes to classification_systems.tex
 [NbConvertApp] Converting notebook classification_systems.ipynb to html_with_toclenvs
-[NbConvertApp] Writing 578715 bytes to classification_systems.html
+[NbConvertApp] Writing 587427 bytes to classification_systems.html
 </pre>
 </div>
 </div>
