@@ -16619,9 +16619,41 @@ Execution data
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2><p>We observe that <strong>QDA</strong> performs very poorly in the prostate dataset, given the high dimensionality of this dataset (more than 12625) and the relatively low number of samples (around 100), which do not ease the accurate computation of the covariance matrices.</p>
-<p>We perform previously a dimensionality reduction by PCA, were we see that we improve this result.</p>
-<p><strong>NSC</strong> performs in this case much better due to the reduced number of parameters and the feature selection properties of this classifier and more consistently between both cases (prostate and breast).</p>
+<h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2><p><strong>Executions</strong></p>
+<p>Tenemos dos ejecuciones en breast, una sin PCA y otra con PCA, y tres en prostata, sin PCA, con PCA 99% de retención de varianza y PCA 80% de varianza. Existe un parámetro que indica el nivel de posible overfit. A más valor, más alejada la precisión de test de la precisión de train.</p>
+<p>En las tablas se muestran las medias de 20 ejecuciones por cada uno de los cuatro métodos de aprendizaje y junto a ellas las desviaciones estándar.</p>
+<p><strong> Breast </strong></p>
+<p>Los métodos de mejor precisión son QDA y LDA.
+La reducción de dimensiones es más efectiva en QDA.
+De acuerdo al valor del indicador de overfit, los métodos más flexibles son LDA y QDA, pero al reducir las dimensiones Naive Bayes pasa a la primera posición</p>
+<p><strong> Prostate </strong></p>
+<p>We observe that <strong>QDA</strong> performs very poorly, as expected given the high dimensionality of this dataset (more than 12625) and the relatively low number of samples (around 100), which do not ease the accurate computation of the covariance matrices.</p>
+<p>Esto afecta a todos los métodos, los mejores son NSC y LDA.</p>
+<p>El overfit de QDA es enorme, y en otro orden de magnitud es también importante el de NBC.</p>
+<p>Observamos también que la precisión de QDA varía mucho con la muestra (alta desviación estándar), por lo que ya estamos viendo que este método as is no es adecuado para este dataset</p>
+<p>Mediante  reducción de dimensionalidad por PCA, were we have seen that we improve this results.</p>
+<p>QDA mejora de forma importante hasta hacerlo utilizable. En otro orden de magnitud NBC y LDA mejoran pero no NSC que a su manera ya reduce la complejidad del modelo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2><p><strong>Executions</strong></p>
+<p>We have two executions in breast, one without PCA and another with PCA (99% variance retained), and three in prostate, without PCA, with PCA 99% variance retention and PCA 80% variance. There is a parameter that indicates the level of possible overfit. The more his value, less robust to overfiting is the learning method.</p>
+<p>The tables show the means of 20 executions for each of the four learning methods and next to them the standard deviations.</p>
+<p><strong>Breast</strong></p>
+<p>The best accuracy methods are <em>QDA</em> and <em>LDA</em>.</p>
+<p>The reduction of dimensions is more effective in <em>QDA</em>.</p>
+<p>According to the value of the overfit indicator, the most flexible methods are <em>LDA</em> and <em>QDA</em>, but when reducing the dimensions <em>NBC</em> goes to the first position</p>
+<p><strong>Prostate</strong></p>
+<p>We observe that <em>QDA</em> performs very poorly, as expected given the high dimensionality of this dataset (more than 12625) and the relatively low number of samples (around 100), which do not ease the accurate computation of the covariance matrices.</p>
+<p>This affects all methods, the best ones being <em>NSC</em> and <em>LDA</em>.</p>
+<p>The overfit of <em>QDA</em> is huge, and another order of magnitude is also relevant for <em>NBC</em>.</p>
+<p>We also note that the accuracy of <em>QDA</em> varies greatly with the sample (high standard deviation), so we are already seeing that this method is not suitable for this dataset</p>
+<p>Through dimensionality reduction by PCA, we have seen that we improve this results.</p>
+<p>In fact <em>QDA</em> improves significantly and becomes confident. In another order of magnitude <em>NBC</em> and <em>LDA</em> improve but not <em>NSC</em> because on its own way, it already reduces the complexity of the model.</p>
 
 </div>
 </div>
@@ -16635,7 +16667,7 @@ Execution data
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[228]:</div>
+<div class="prompt input_prompt">In&nbsp;[322]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -16664,9 +16696,9 @@ jupyter nbconvert --to html_with_toclenvs classification_systems.ipynb <span cla
 [NbConvertApp] Making directory classification_systems_files
 [NbConvertApp] Making directory classification_systems_files
 [NbConvertApp] Making directory classification_systems_files
-[NbConvertApp] Writing 65698 bytes to classification_systems.tex
+[NbConvertApp] Writing 71120 bytes to classification_systems.tex
 [NbConvertApp] Converting notebook classification_systems.ipynb to html_with_toclenvs
-[NbConvertApp] Writing 641364 bytes to classification_systems.html
+[NbConvertApp] Writing 642718 bytes to classification_systems.html
 </pre>
 </div>
 </div>
