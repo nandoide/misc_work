@@ -16620,27 +16620,6 @@ Execution data
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2><p><strong>Executions</strong></p>
-<p>Tenemos dos ejecuciones en breast, una sin PCA y otra con PCA, y tres en prostata, sin PCA, con PCA 99% de retención de varianza y PCA 80% de varianza. Existe un parámetro que indica el nivel de posible overfit. A más valor, más alejada la precisión de test de la precisión de train.</p>
-<p>En las tablas se muestran las medias de 20 ejecuciones por cada uno de los cuatro métodos de aprendizaje y junto a ellas las desviaciones estándar.</p>
-<p><strong> Breast </strong></p>
-<p>Los métodos de mejor precisión son QDA y LDA.
-La reducción de dimensiones es más efectiva en QDA.
-De acuerdo al valor del indicador de overfit, los métodos más flexibles son LDA y QDA, pero al reducir las dimensiones Naive Bayes pasa a la primera posición</p>
-<p><strong> Prostate </strong></p>
-<p>We observe that <strong>QDA</strong> performs very poorly, as expected given the high dimensionality of this dataset (more than 12625) and the relatively low number of samples (around 100), which do not ease the accurate computation of the covariance matrices.</p>
-<p>Esto afecta a todos los métodos, los mejores son NSC y LDA.</p>
-<p>El overfit de QDA es enorme, y en otro orden de magnitud es también importante el de NBC.</p>
-<p>Observamos también que la precisión de QDA varía mucho con la muestra (alta desviación estándar), por lo que ya estamos viendo que este método as is no es adecuado para este dataset</p>
-<p>Mediante  reducción de dimensionalidad por PCA, were we have seen that we improve this results.</p>
-<p>QDA mejora de forma importante hasta hacerlo utilizable. En otro orden de magnitud NBC y LDA mejoran pero no NSC que a su manera ya reduce la complejidad del modelo.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2><p><strong>Executions</strong></p>
 <p>We have two executions in breast, one without PCA and another with PCA (99% variance retained), and three in prostate, without PCA, with PCA 99% variance retention and PCA 80% variance. There is a parameter that indicates the level of possible overfit. The more his value, less robust to overfiting is the learning method.</p>
 <p>The tables show the means of 20 executions for each of the four learning methods and next to them the standard deviations.</p>
 <p><strong>Breast</strong></p>
@@ -16667,7 +16646,7 @@ De acuerdo al valor del indicador de overfit, los métodos más flexibles son LD
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[322]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -16677,32 +16656,6 @@ jupyter nbconvert --to html_with_toclenvs classification_systems.ipynb <span cla
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[NbConvertApp] Converting notebook classification_systems.ipynb to latex
-[NbConvertApp] Support files will be in classification_systems_files/
-[NbConvertApp] Making directory classification_systems_files
-[NbConvertApp] Making directory classification_systems_files
-[NbConvertApp] Making directory classification_systems_files
-[NbConvertApp] Making directory classification_systems_files
-[NbConvertApp] Writing 71120 bytes to classification_systems.tex
-[NbConvertApp] Converting notebook classification_systems.ipynb to html_with_toclenvs
-[NbConvertApp] Writing 642718 bytes to classification_systems.html
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
