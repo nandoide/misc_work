@@ -13281,7 +13281,9 @@ What method is more robust to over-fitting?</p>
 $$\mu_{kj} = m_j + \Delta_{kj}\,,$$ 
 where $\Delta_{kj}$ is the shrunken component</p>
 <p><strong>Selecting the best parameter value</strong></p>
-<p>To do so we compute the set of values with the maximum test data accuracy, and between then we choose the set of values that have the maximum train data accuracy. From this set we choose the lowest value.</p>
+<p>To do so, as a first idea, we compute the set of values with the maximum test data accuracy, and between then we choose the set of values that have the maximum train data accuracy. From this set we choose the lowest value.</p>
+<p>We compare this method defined in the global parameter <em>gp_best_hyper_method = "max_in_test"</em> to the method than simply computes the parameter for maximum cross validation data accuracy (<em>gp_best_hyper_method = "max_in_cv"</em>) and we obtain better accuracies in test data. But we came into account that because we use test data to adjust the hyper-parameter perhaps we are introducing some bias  improving the accuracy of this particular test data, and so a optimistic evaluation of the accuracy.</p>
+<p>Thus, we compute the hyperparameters with "max_in_cv" choose method.</p>
 
 </div>
 </div>
@@ -16620,8 +16622,9 @@ Execution data
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2><p><strong>Executions</strong></p>
-<p>We have two executions in breast, one without PCA and another with PCA (99% variance retained), and three in prostate, without PCA, with PCA 99% variance retention and PCA 80% variance. There is a parameter that indicates the level of possible overfit. The more his value, less robust to overfiting is the learning method.</p>
-<p>The tables show the means of 20 executions for each of the four learning methods and next to them the standard deviations.</p>
+<p>We have two executions in breast, one without PCA and another with PCA (99 percent variance retained), and three in prostate, without PCA, with PCA 99 percent variance retention and PCA 80 percent variance. There is a parameter that indicates the level of possible overfit. The more his value, less robust to overfiting is the learning method, thus more flexible as more closed to the training data.</p>
+<p>We have defined this <em>overfiting indicator</em> as the ratio of the difference of accuracies between train and test as numerator, and as denominator the test accuracy</p>
+<p>The tables show the means of 20 executions for each of the four learning methods and close to them the standard deviations.</p>
 <p><strong>Breast</strong></p>
 <p>The best accuracy methods are <em>QDA</em> and <em>LDA</em>.</p>
 <p>The reduction of dimensions is more effective in <em>QDA</em>.</p>
@@ -16632,7 +16635,7 @@ Execution data
 <p>The overfit of <em>QDA</em> is huge, and another order of magnitude is also relevant for <em>NBC</em>.</p>
 <p>We also note that the accuracy of <em>QDA</em> varies greatly with the sample (high standard deviation), so we are already seeing that this method is not suitable for this dataset</p>
 <p>Through dimensionality reduction by PCA, we have seen that we improve this results.</p>
-<p>In fact <em>QDA</em> improves significantly and becomes confident. In another order of magnitude <em>NBC</em> and <em>LDA</em> improve but not <em>NSC</em> because on its own way, it already reduces the complexity of the model.</p>
+<p>In fact <em>QDA</em> improves significantly and becomes reliable. In another order of magnitude <em>NBC</em> and <em>LDA</em> improve but not <em>NSC</em> because on its own way, it already reduces the complexity of the model.</p>
 
 </div>
 </div>
@@ -16646,7 +16649,7 @@ Execution data
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[332]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -16656,6 +16659,32 @@ jupyter nbconvert --to html_with_toclenvs classification_systems.ipynb <span cla
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[NbConvertApp] Converting notebook classification_systems.ipynb to latex
+[NbConvertApp] Support files will be in classification_systems_files/
+[NbConvertApp] Making directory classification_systems_files
+[NbConvertApp] Making directory classification_systems_files
+[NbConvertApp] Making directory classification_systems_files
+[NbConvertApp] Making directory classification_systems_files
+[NbConvertApp] Writing 72507 bytes to classification_systems.tex
+[NbConvertApp] Converting notebook classification_systems.ipynb to html_with_toclenvs
+[NbConvertApp] Writing 644219 bytes to classification_systems.html
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
