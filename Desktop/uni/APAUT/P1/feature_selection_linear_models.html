@@ -13239,7 +13239,7 @@ $( document ).ready(function(){
 <p>Examples: Sequential forward selection (SFS) , Sequential backward elimination, Simulated annealing, Randomized hill climbing, Genetic algorithms.</p>
 </li>
 <li><p>Embedded methods. The search of the optimal subset of features is built into the classifier. Have the advantage that they include the interaction with the classification model, while at the same time being far less computationally intensive than wrapper methods.</p>
-<p>Examples: Decision trees Weighted naive Bayes, Feature selection using the weight vector of SVM.</p>
+<p>Examples: Decision trees Weighted naive Bayes, Feature selection using the weight vector of SVM, AROM</p>
 </li>
 </ol>
 <h3 id="AROM-methods">AROM methods<a class="anchor-link" href="#AROM-methods">&#182;</a></h3><p>The acronym derives from <em>Approximation of Minimization zeRO-norm</em></p>
@@ -13252,6 +13252,7 @@ $$h(\mathbf{x}) = sign(\mathbf{w} \cdot \mathbf{x} + b)$$<p>for $n$ samples $x_i
 $$y_i(\mathbf{w} \cdot \mathbf{x} + b) \ge 1$$<p>The minimization is done with a norm defined over the vectorial space of $\mathbf{w}$. One approach is to minimize the zero-norm, that is, the number of components of the vector (number of non null $w_i$). But it's know to be a NP-Hard problem.</p>
 <p>It's more adequate compute over a 1-norm or a 2-norm. In the second paper, the author deduce a suitable form for the function that could be minimized, taken into account the former constraint:</p>
 $$\displaystyle\sum_{j=1}^n ln(|w_j| + \epsilon)$$<p>The term $\epsilon$ is included to protect from zero values inside logarithm.</p>
+<p>AROM methods are therefore feature selection embedded methods.</p>
 <p><strong>l1-AROM</strong> and <strong>l2-AROM</strong> (in this case by means of a 2-norm minimization) algorithms optimize this algorithm by iterative rescaling of inputs and doing a smooth feature selection since the weight coefficients along some dimensions progressively drop below the machine precision while other dimensions become more significant.</p>
 <h3 id="AROM-semi-supervised">AROM semi-supervised<a class="anchor-link" href="#AROM-semi-supervised">&#182;</a></h3><p>Third and Fourth papers explore a improvement of these previous described methods.</p>
 <p><strong>Goal</strong></p>
@@ -13262,7 +13263,7 @@ $$\displaystyle\sum_{j=1}^n ln(|w_j| + \epsilon)$$<p>The term $\epsilon$ is incl
 <p>This datasets are called source datasets and we expect that the prediction for a similar feature vector is the same than the prediction for this vector in our dataset (the target).</p>
 <p><em>In third paper prior knowledge is incorporated by biological information</em></p>
 <p>So, if we have some knowledge on the relative importance of each feature (either from actual prior knowledge or from a related dataset), the supervised AROM objective can be modified by adding a prior relevance vector $\beta = [\beta_1,...,\beta_n]$  defined over the $n$ dimensions and where $\beta_j &gt;0$ is the prior relevance of the $j$ feature.</p>
-<p>So in this case, the function to minimize is:</p>
+<p>So in this case, the function to minimize in the case of 1-norm is:</p>
 $$\displaystyle\sum_{j=1}^n \frac{1}{\beta_j} ln(|w_j| + \epsilon)$$
 </div>
 </div>
@@ -13283,7 +13284,7 @@ $$\displaystyle\sum_{j=1}^n \frac{1}{\beta_j} ln(|w_j| + \epsilon)$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -13307,7 +13308,9 @@ jupyter nbconvert --to html_with_toclenvs feature_selection_linear_models.ipynb 
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>[NbConvertApp] Converting notebook feature_selection_linear_models.ipynb to latex
-[NbConvertApp] Writing 34074 bytes to feature_selection_linear_models.tex
+[NbConvertApp] Writing 31834 bytes to feature_selection_linear_models.tex
+[NbConvertApp] Converting notebook feature_selection_linear_models.ipynb to html_with_toclenvs
+[NbConvertApp] Writing 285502 bytes to feature_selection_linear_models.html
 </pre>
 </div>
 </div>
