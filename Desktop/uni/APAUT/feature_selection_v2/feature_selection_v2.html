@@ -13534,23 +13534,26 @@ Mean 0.7363636363636364 Std 0.1498759817894628
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Response-2">Response 2<a class="anchor-link" href="#Response-2">&#182;</a></h3><p>We obtain a mean accuracy score of $0.94$ with std $0.07$</p>
+<h3 id="Response-2">Response 2<a class="anchor-link" href="#Response-2">&#182;</a></h3><p>We obtain a mean accuracy score of $0.94$ with std mean error $0.02$</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n_features</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of features&quot;</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
 <span class="n">n_splits</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">random_state</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">rkf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 <span class="n">split</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">knn_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_splits</span><span class="p">)</span>
+<span class="n">knn_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_splits</span><span class="p">)</span>
+<span class="n">knn_scores_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_splits</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">rkf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Partition&quot;</span><span class="p">,</span> <span class="n">split</span><span class="p">)</span>
     <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
@@ -13570,11 +13573,22 @@ Mean 0.7363636363636364 Std 0.1498759817894628
     <span class="c1"># Training &amp; scoring</span>
     <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_filtered</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="n">knn_scores</span><span class="p">[</span><span class="n">split</span><span class="p">]</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_filtered</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="n">knn_scores_train</span><span class="p">[</span><span class="n">split</span><span class="p">]</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_filtered</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">knn_errors</span><span class="p">[</span><span class="n">split</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_filtered</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span>
     <span class="n">split</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="nb">print</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy scores&quot;</span><span class="p">,</span> <span class="n">knn_scores</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span> <span class="n">knn_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;Std&quot;</span><span class="p">,</span> <span class="n">knn_scores</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span> <span class="n">knn_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;std mean error&quot;</span><span class="p">,(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">knn_scores</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">knn_scores</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Errors&quot;</span><span class="p">,</span> <span class="n">knn_errors</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span> <span class="n">knn_errors</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;std mean error&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">knn_errors</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">knn_errors</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy scores train&quot;</span><span class="p">,</span> <span class="n">knn_scores_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span> <span class="n">knn_scores_train</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;std mean error&quot;</span><span class="p">,(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">knn_scores_train</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">knn_scores_train</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13606,7 +13620,17 @@ Partition 9
 Accuracy scores [1.         0.90909091 1.         0.8        1.         0.9
  0.9        1.         0.9        1.        ]
 
-Mean 0.9409090909090908 Std 0.06583852021272692
+Mean 0.9409090909090908 std mean error 0.02081996816472506
+
+Errors [0.         0.09090909 0.         0.2        0.         0.1
+ 0.1        0.         0.1        0.        ]
+
+Mean 0.05909090909090908 std mean error 0.02081996816472506
+
+Accuracy scores train [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+
+Mean 1.0 std mean error 0.0
+
 </pre>
 </div>
 </div>
@@ -13626,24 +13650,27 @@ Mean 0.9409090909090908 Std 0.06583852021272692
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Response-3">Response 3<a class="anchor-link" href="#Response-3">&#182;</a></h3><p>We obtain a mean accuracy score of $0.92$ with std $0.07$</p>
+<h3 id="Response-3">Response 3<a class="anchor-link" href="#Response-3">&#182;</a></h3><p>We obtain a mean accuracy score of $0.92$ with std mean error $0.02$</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n_features</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of features&quot;</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
 <span class="n">n_splits</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">random_state</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">rkf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 <span class="n">split</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">knn_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_splits</span><span class="p">)</span>
-<span class="n">rf_selection</span> <span class="o">=</span>  <span class="n">SelectFromModel</span><span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">4000</span><span class="p">,</span>\
+<span class="n">knn_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_splits</span><span class="p">)</span>
+<span class="n">knn_scores_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_splits</span><span class="p">)</span>
+<span class="n">rf_selection</span> <span class="o">=</span>  <span class="n">SelectFromModel</span><span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span>\
                                                        <span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span><span class="p">),</span> <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">rkf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Partition&quot;</span><span class="p">,</span> <span class="n">split</span><span class="p">)</span>
@@ -13656,31 +13683,42 @@ Mean 0.9409090909090908 Std 0.06583852021272692
     <span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
     
     <span class="c1"># Filtering pass 1 via F-score, only 20%</span>
-    <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">inner_features</span><span class="p">)</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">inner_features</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">features_to_retain</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">inner_features</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">filtering</span> <span class="o">=</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">f_classif</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">features_to_retain</span><span class="p">)</span>
     <span class="n">filtering</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="n">X_train_filtered_F</span> <span class="o">=</span> <span class="n">filtering</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
     <span class="n">X_test_filtered_F</span> <span class="o">=</span> <span class="n">filtering</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">n_features_reduction_F</span><span class="p">)</span> <span class="o">=</span> <span class="n">X_train_filtered_F</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">n_features_reduction_F</span> <span class="o">=</span> <span class="n">X_train_filtered_F</span><span class="o">.</span><span class="n">shape</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Features reduced to (first pass)&quot;</span><span class="p">,</span> <span class="n">n_features_reduction_F</span><span class="p">)</span>
     
     <span class="c1"># Filtering random forest</span>
     <span class="n">rf_selection</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_filtered_F</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="n">rf_selection</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">rf_selection</span><span class="o">.</span><span class="n">estimator_</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)[</span> <span class="mi">9</span> <span class="p">]</span>
+    <span class="n">rf_selection</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">rf_selection</span><span class="o">.</span><span class="n">estimator_</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)[</span><span class="n">n_splits</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">X_train_filtered_F_R</span> <span class="o">=</span> <span class="n">rf_selection</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_filtered_F</span><span class="p">)</span>
     <span class="n">X_test_filtered_F_R</span> <span class="o">=</span> <span class="n">rf_selection</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_filtered_F</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">n_features_reduction</span><span class="p">)</span> <span class="o">=</span> <span class="n">X_train_filtered_F_R</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">n_features_reduction</span> <span class="o">=</span> <span class="n">X_train_filtered_F_R</span><span class="o">.</span><span class="n">shape</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Features reduced to (second pass)&quot;</span><span class="p">,</span> <span class="n">n_features_reduction</span><span class="p">)</span>
     
     <span class="c1"># Training &amp; scoring</span>
     <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_filtered_F_R</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="n">knn_scores</span><span class="p">[</span><span class="n">split</span><span class="p">]</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_filtered_F_R</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="n">knn_errors</span><span class="p">[</span><span class="n">split</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_filtered_F_R</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="n">knn_scores_train</span><span class="p">[</span><span class="n">split</span><span class="p">]</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_filtered_F_R</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="n">split</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="nb">print</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy scores&quot;</span><span class="p">,</span> <span class="n">knn_scores</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span> <span class="n">knn_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;Std&quot;</span><span class="p">,</span> <span class="n">knn_scores</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span> <span class="n">knn_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;std mean error&quot;</span><span class="p">,(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">knn_scores</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">knn_scores</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Errors&quot;</span><span class="p">,</span> <span class="n">knn_errors</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span> <span class="n">knn_errors</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;std mean error&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">knn_errors</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">knn_errors</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy scores train&quot;</span><span class="p">,</span> <span class="n">knn_scores_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span> <span class="n">knn_scores_train</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;std mean error&quot;</span><span class="p">,(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">knn_scores_train</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">knn_scores_train</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13729,10 +13767,20 @@ Partition 9
 Features reduced to (first pass) 2525
 Features reduced to (second pass) 10
 
-Accuracy scores [0.90909091 0.90909091 1.         0.8        1.         0.8
- 0.9        1.         0.9        1.        ]
+Accuracy scores [0.90909091 0.90909091 1.         0.8        1.         0.9
+ 0.9        1.         0.9        0.9       ]
 
-Mean 0.9218181818181819 Std 0.07443450723803169
+Mean 0.9218181818181819 std mean error 0.018816205429811276
+
+Errors [0.09090909 0.09090909 0.         0.2        0.         0.1
+ 0.1        0.         0.1        0.1       ]
+
+Mean 0.07818181818181817 std mean error 0.018816205429811276
+
+Accuracy scores train [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+
+Mean 1.0 std mean error 0.0
+
 </pre>
 </div>
 </div>
@@ -13752,8 +13800,13 @@ Mean 0.9218181818181819 Std 0.07443450723803169
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Response-4">Response 4<a class="anchor-link" href="#Response-4">&#182;</a></h3><p>ANOVA performs marginally better than Random Forest, but between the error margins computed by the standard deviation, so taken this into account, the method have a similar performance.</p>
-<p>But ANOVA is less computational intensive.</p>
+<h3 id="Response-4">Response 4<a class="anchor-link" href="#Response-4">&#182;</a></h3><p>ANOVA performs marginally better than Random Forest, with overlapping confidence intervals:</p>
+<ol>
+<li>Anova $0.94 \pm 0.02$.</li>
+<li>Random Forest $0.92 \pm 0.02$.</li>
+</ol>
+<p>Random Forest is prone to be more sticky to the train data, because of his very hard dependences of initial selection nodes.</p>
+<p>ANOVA is also less computational intensive.</p>
 
 </div>
 </div>
@@ -13767,7 +13820,7 @@ Mean 0.9218181818181819 Std 0.07443450723803169
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -13795,7 +13848,7 @@ jupyter nbconvert --to html_with_toclenvs feature_selection_v2.ipynb <span class
 [NbConvertApp] Making directory feature_selection_v2_files
 [NbConvertApp] Writing 39225 bytes to feature_selection_v2.tex
 [NbConvertApp] Converting notebook feature_selection_v2.ipynb to html_with_toclenvs
-[NbConvertApp] Writing 362807 bytes to feature_selection_v2.html
+[NbConvertApp] Writing 362658 bytes to feature_selection_v2.html
 </pre>
 </div>
 </div>
