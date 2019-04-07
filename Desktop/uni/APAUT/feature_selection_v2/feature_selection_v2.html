@@ -13541,7 +13541,7 @@ Mean 0.7363636363636364 Std 0.1498759817894628
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n_features</span> <span class="o">=</span> <span class="mi">10</span>
@@ -13657,7 +13657,7 @@ Mean 1.0 std mean error 0.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n_features</span> <span class="o">=</span> <span class="mi">10</span>
@@ -13694,7 +13694,7 @@ Mean 1.0 std mean error 0.0
     
     <span class="c1"># Filtering random forest</span>
     <span class="n">rf_selection</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_filtered_F</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="n">rf_selection</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">rf_selection</span><span class="o">.</span><span class="n">estimator_</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)[</span><span class="n">n_splits</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">rf_selection</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">rf_selection</span><span class="o">.</span><span class="n">estimator_</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)[</span><span class="n">n_features</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">X_train_filtered_F_R</span> <span class="o">=</span> <span class="n">rf_selection</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_filtered_F</span><span class="p">)</span>
     <span class="n">X_test_filtered_F_R</span> <span class="o">=</span> <span class="n">rf_selection</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_filtered_F</span><span class="p">)</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">n_features_reduction</span> <span class="o">=</span> <span class="n">X_train_filtered_F_R</span><span class="o">.</span><span class="n">shape</span>
@@ -13801,12 +13801,16 @@ Mean 1.0 std mean error 0.0
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Response-4">Response 4<a class="anchor-link" href="#Response-4">&#182;</a></h3><p>ANOVA performs marginally better than Random Forest, with overlapping confidence intervals:</p>
-<ol>
+<ul>
 <li>Anova $0.94 \pm 0.02$.</li>
 <li>Random Forest $0.92 \pm 0.02$.</li>
-</ol>
-<p>Random Forest is prone to be more sticky to the train data, because of his very hard dependences of initial selection nodes.</p>
-<p>ANOVA is also less computational intensive.</p>
+</ul>
+<p>Decision trees are prone to be more sticky to the data, because of his very hard dependences of initial selection nodes, because it chooses the best result at a given step, but does not ensure that this is the optimal decision of the whole route to the leaf node. Random forests mitigate this problem but the algorithm needs enough features in order to make more effective the randomization.</p>
+<p>In fact, if we rise the number of selected features to $20$, the numbers are just the opposite:</p>
+<ul>
+<li>Anova $0.92 \pm 0.02$.</li>
+<li>Random Forest $0.94 \pm 0.02$.</li>
+</ul>
 
 </div>
 </div>
@@ -13820,7 +13824,7 @@ Mean 1.0 std mean error 0.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -13846,9 +13850,9 @@ jupyter nbconvert --to html_with_toclenvs feature_selection_v2.ipynb <span class
 <pre>[NbConvertApp] Converting notebook feature_selection_v2.ipynb to latex
 [NbConvertApp] Support files will be in feature_selection_v2_files/
 [NbConvertApp] Making directory feature_selection_v2_files
-[NbConvertApp] Writing 39225 bytes to feature_selection_v2.tex
+[NbConvertApp] Writing 41202 bytes to feature_selection_v2.tex
 [NbConvertApp] Converting notebook feature_selection_v2.ipynb to html_with_toclenvs
-[NbConvertApp] Writing 362658 bytes to feature_selection_v2.html
+[NbConvertApp] Writing 371125 bytes to feature_selection_v2.html
 </pre>
 </div>
 </div>
