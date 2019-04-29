@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>FernandoFreire_exercise4</title>
+<title>FernandoFreire_exercise5</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13138,7 +13138,7 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Two-enzyme-kinetics:-kinase-phosphatase">Two enzyme kinetics: kinase-phosphatase<a class="anchor-link" href="#Two-enzyme-kinetics:-kinase-phosphatase">&#182;</a></h1>
+<h1 id="The-central-dogma">The central dogma<a class="anchor-link" href="#The-central-dogma">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13152,53 +13152,7 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We obtain the equations as follows.</p>
-<ol>
-<li>Calculate the six velocities of reaction:
- $$
- \begin{array}{l}
- {k_1*s*e1}\\
- {k_2*e1s}\\
- {k_3 * e1s}\\
- {k_4 * p * e2}\\
- {k_5 * e2p}\\
- {k_6 * e2p}
- \end{array}
- $$</li>
-</ol>
-<ol>
-<li><p>Assign derivatives with his sign: minus if arrow pointing from the molecule, plus if arrow pointing to molecule</p>
-<p>$$
- \begin{array}{l}
- {k_1*s*e1 \rightarrow \left \{ -ds/dt, -de1/dt, de1s/dt \right \}}\\
- {k_2*e1s \rightarrow \left \{ ds/dt, de1/dt, -de1s/dt \right \}}\\
- {k_3 * e1s  \rightarrow \left \{ -de1s/dt, de1/dt, dp/dt \right \}}\\
- {k_4 * p * e2  \rightarrow \left \{ -dp/dt, -de2/dt, de2p/dt \right \}}\\
- {k_5 * e2p \rightarrow \left \{ dp/dt, de2/dt, -de2p/dt \right \}}\\
- {k_6 * e2p  \rightarrow \left \{ dp/dt, de2/dt, -de2p/dt \right \}}\\
- \end{array}
- $$</p>
-</li>
-</ol>
-<ol>
-<li><p>Reverse the assignments, from derivatives to reaction rates, adding in each diferencial equation, the rates with their sign. With this approach we construct the equations writing directly on method <em>modelkp_6</em>.</p>
-<div class="highlight"><pre><span></span><span class="n">dsdt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_1</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">e1</span> <span class="o">+</span> <span class="n">k_2</span> <span class="o">*</span> <span class="n">e1s</span>  <span class="o">+</span> <span class="n">k_6</span> <span class="o">*</span> <span class="n">e2p</span>
-<span class="n">de1dt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_1</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">e1</span> <span class="o">+</span> <span class="n">k_2</span> <span class="o">*</span> <span class="n">e1s</span> <span class="o">+</span> <span class="n">k_3</span> <span class="o">*</span> <span class="n">e1s</span>
-<span class="n">de2dt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_4</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">e2</span> <span class="o">+</span> <span class="n">k_5</span> <span class="o">*</span> <span class="n">e2p</span> <span class="o">+</span> <span class="n">k_6</span> <span class="o">*</span> <span class="n">e2p</span>
-<span class="n">de1sdt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_3</span> <span class="o">*</span> <span class="n">e1s</span> <span class="o">+</span> <span class="n">k_1</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">e1</span> <span class="o">-</span> <span class="n">k_2</span> <span class="o">*</span> <span class="n">e1s</span>
-<span class="n">de2pdt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_5</span> <span class="o">*</span> <span class="n">e2p</span> <span class="o">+</span> <span class="n">k_4</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="n">e2</span> <span class="o">-</span> <span class="n">k_6</span> <span class="o">*</span> <span class="n">e2p</span>
-<span class="n">dpdt</span> <span class="o">=</span> <span class="n">k_3</span> <span class="o">*</span> <span class="n">e1s</span> <span class="o">-</span> <span class="n">k_4</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="n">e2</span> <span class="o">+</span> <span class="n">k_5</span> <span class="o">*</span> <span class="n">e2p</span>
-</pre></div>
-</li>
-</ol>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Numerical-simulation-modelkp_6">Numerical simulation <em>modelkp_6</em><a class="anchor-link" href="#Numerical-simulation-modelkp_6">&#182;</a></h2>
+<h2 id="Numerical-simulation-first-model">Numerical simulation first model<a class="anchor-link" href="#Numerical-simulation-first-model">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13212,19 +13166,17 @@ $( document ).ready(function(){
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">odeint</span>
 
 <span class="c1"># Initial conditions</span>
-<span class="n">k_1</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">k_2</span> <span class="o">=</span> <span class="mf">0.15</span>
-<span class="n">k_3</span> <span class="o">=</span> <span class="mf">0.03</span>
-<span class="n">k_4</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">k_5</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">k_6</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">e1_0</span> <span class="o">=</span> <span class="mf">0.002</span>
-<span class="n">e2_0</span> <span class="o">=</span> <span class="mf">0.002</span>
-<span class="n">s_0</span> <span class="o">=</span> <span class="mf">0.002</span>
-<span class="n">p_0</span> <span class="o">=</span> <span class="mf">0.001</span>
-<span class="n">e2p_0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">e1s_0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">total_time</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">M_0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">P_0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Km</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Kp</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">dm</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">dp</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">T_0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">D_0</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">total_time</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
 </pre></div>
 
@@ -13238,327 +13190,71 @@ $( document ).ready(function(){
 <div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">modelkp_6</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">k_1</span><span class="p">,</span> <span class="n">k_2</span><span class="p">,</span> <span class="n">k_3</span><span class="p">,</span> <span class="n">k_4</span><span class="p">,</span> <span class="n">k_5</span><span class="p">,</span> <span class="n">k_6</span><span class="p">):</span>
-    <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e1s</span><span class="p">,</span> <span class="n">e2p</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
-    <span class="n">dsdt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_1</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">e1</span> <span class="o">+</span> <span class="n">k_2</span> <span class="o">*</span> <span class="n">e1s</span>  <span class="o">+</span> <span class="n">k_6</span> <span class="o">*</span> <span class="n">e2p</span>
-    <span class="n">de1dt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_1</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">e1</span> <span class="o">+</span> <span class="n">k_2</span> <span class="o">*</span> <span class="n">e1s</span> <span class="o">+</span> <span class="n">k_3</span> <span class="o">*</span> <span class="n">e1s</span>
-    <span class="n">de2dt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_4</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">e2</span> <span class="o">+</span> <span class="n">k_5</span> <span class="o">*</span> <span class="n">e2p</span> <span class="o">+</span> <span class="n">k_6</span> <span class="o">*</span> <span class="n">e2p</span>
-    <span class="n">de1sdt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_3</span> <span class="o">*</span> <span class="n">e1s</span> <span class="o">+</span> <span class="n">k_1</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">e1</span> <span class="o">-</span> <span class="n">k_2</span> <span class="o">*</span> <span class="n">e1s</span>
-    <span class="n">de2pdt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_5</span> <span class="o">*</span> <span class="n">e2p</span> <span class="o">+</span> <span class="n">k_4</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="n">e2</span> <span class="o">-</span> <span class="n">k_6</span> <span class="o">*</span> <span class="n">e2p</span>
-    <span class="n">dpdt</span> <span class="o">=</span> <span class="n">k_3</span> <span class="o">*</span> <span class="n">e1s</span> <span class="o">-</span> <span class="n">k_4</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="n">e2</span> <span class="o">+</span> <span class="n">k_5</span> <span class="o">*</span> <span class="n">e2p</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># M = mRNA</span>
+<span class="c1"># D = DNA</span>
+<span class="c1"># P = protein</span>
+<span class="c1"># T = transcription factor</span>
+<span class="c1"># Km = rate of mRNA production</span>
+<span class="c1"># Kp = rate of protein production</span>
+<span class="c1"># dm = rate of mRNA degradation</span>
+<span class="c1"># dp = rate of protein degradation</span>
+<span class="c1"># a = promoter leaking</span>
+
+<span class="c1"># T + D -Km-&gt; M + T + D, T is not consumed and nor DNA</span>
+<span class="c1"># M -Kp-&gt; P + M, not being consumed</span>
+<span class="c1"># M -dm-&gt; 0</span>
+<span class="c1"># P -dp-&gt; 0</span>
+<span class="c1"># 0 -a-&gt; M</span>
+
+<span class="k">def</span> <span class="nf">modelD</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">):</span>
+    <span class="p">[</span><span class="n">M</span><span class="p">,</span> <span class="n">P</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">dMdt</span> <span class="o">=</span> <span class="n">Km</span><span class="o">*</span><span class="n">T_0</span><span class="o">*</span><span class="n">D_0</span> <span class="o">-</span> <span class="n">dm</span><span class="o">*</span><span class="n">M</span> <span class="o">+</span> <span class="n">a</span>
+    <span class="n">dPdt</span> <span class="o">=</span> <span class="n">Kp</span><span class="o">*</span><span class="n">M</span> <span class="o">-</span> <span class="n">dp</span><span class="o">*</span><span class="n">P</span>
     
-    <span class="n">dydt</span> <span class="o">=</span> <span class="p">[</span><span class="n">dsdt</span><span class="p">,</span> <span class="n">de1dt</span><span class="p">,</span> <span class="n">de2dt</span><span class="p">,</span> <span class="n">de1sdt</span><span class="p">,</span> <span class="n">de2pdt</span><span class="p">,</span> <span class="n">dpdt</span><span class="p">]</span>
+    <span class="n">dydt</span> <span class="o">=</span> <span class="p">[</span><span class="n">dMdt</span><span class="p">,</span> <span class="n">dPdt</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">dydt</span>
 
-<span class="c1"># initial condition</span>
-<span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">s_0</span><span class="p">,</span> <span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">,</span> <span class="n">e1s_0</span><span class="p">,</span> <span class="n">e2p_0</span><span class="p">,</span> <span class="n">p_0</span><span class="p">]</span>
-
-<span class="c1"># time points</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
-
-<span class="c1"># solve ODE</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">modelkp_6</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">k_1</span><span class="p">,</span> <span class="n">k_2</span><span class="p">,</span> <span class="n">k_3</span><span class="p">,</span> <span class="n">k_4</span><span class="p">,</span> <span class="n">k_5</span><span class="p">,</span> <span class="n">k_6</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-
-<span class="c1"># plot results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e1&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e2&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e1s&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">4</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e2p&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">5</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time[s]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Concentration[M]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="FernandoFreire_exercise4_files/FernandoFreire_exercise4_5_0.png"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Conservation-of-mass">Conservation of mass<a class="anchor-link" href="#Conservation-of-mass">&#182;</a></h2><p>Concentrations of enzymes $e1$ and $e2$ remain constant:</p>
-$$
-\begin{array}{l}
-{e1 = e1_0 - e1s}\\
-{e2 = e2_0 - e2p}
-\end{array}
-$$<p>We write directly on the model method <em>modelkp_4</em> both constraints, equating to zero the derivatives.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Numerical-simulation-modelkp_4">Numerical simulation <em>modelkp_4</em><a class="anchor-link" href="#Numerical-simulation-modelkp_4">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">modelkp_4</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">k_1</span><span class="p">,</span> <span class="n">k_2</span><span class="p">,</span> <span class="n">k_3</span><span class="p">,</span> <span class="n">k_4</span><span class="p">,</span> <span class="n">k_5</span><span class="p">,</span> <span class="n">k_6</span><span class="p">,</span> <span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">):</span>
-    <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">e1s</span><span class="p">,</span> <span class="n">e2p</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
-    <span class="c1"># Constraints</span>
-    <span class="n">e1</span> <span class="o">=</span> <span class="n">e1_0</span> <span class="o">-</span> <span class="n">e1s</span>
-    <span class="n">e2</span> <span class="o">=</span> <span class="n">e2_0</span> <span class="o">-</span> <span class="n">e2p</span>
-    <span class="n">dsdt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_1</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">e1</span> <span class="o">+</span> <span class="n">k_2</span> <span class="o">*</span> <span class="n">e1s</span>  <span class="o">+</span> <span class="n">k_6</span> <span class="o">*</span> <span class="n">e2p</span>
-    <span class="n">de1dt</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">de2dt</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">de1sdt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_3</span> <span class="o">*</span> <span class="n">e1s</span> <span class="o">+</span> <span class="n">k_1</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">e1</span> <span class="o">-</span> <span class="n">k_2</span> <span class="o">*</span> <span class="n">e1s</span>
-    <span class="n">de2pdt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_5</span> <span class="o">*</span> <span class="n">e2p</span> <span class="o">+</span> <span class="n">k_4</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="n">e2</span> <span class="o">-</span> <span class="n">k_6</span> <span class="o">*</span> <span class="n">e2p</span>
-    <span class="n">dpdt</span> <span class="o">=</span> <span class="n">k_3</span> <span class="o">*</span> <span class="n">e1s</span> <span class="o">-</span> <span class="n">k_4</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="n">e2</span> <span class="o">+</span> <span class="n">k_5</span> <span class="o">*</span> <span class="n">e2p</span>
+<span class="k">def</span> <span class="nf">hill</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">T</span><span class="o">**</span><span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="n">T</span><span class="o">**</span><span class="n">n</span><span class="p">)</span>
     
-    <span class="n">dydt</span> <span class="o">=</span> <span class="p">[</span><span class="n">dsdt</span><span class="p">,</span> <span class="n">de1dt</span><span class="p">,</span> <span class="n">de2dt</span><span class="p">,</span> <span class="n">de1sdt</span><span class="p">,</span> <span class="n">de2pdt</span><span class="p">,</span> <span class="n">dpdt</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">modelDH</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="p">[</span><span class="n">M</span><span class="p">,</span> <span class="n">P</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">dMdt</span> <span class="o">=</span> <span class="n">Km</span><span class="o">*</span><span class="n">hill</span><span class="p">(</span><span class="n">T_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">D_0</span> <span class="o">-</span> <span class="n">dm</span><span class="o">*</span><span class="n">M</span> <span class="o">+</span> <span class="n">a</span>
+    <span class="n">dPdt</span> <span class="o">=</span> <span class="n">Kp</span><span class="o">*</span><span class="n">M</span> <span class="o">-</span> <span class="n">dp</span><span class="o">*</span><span class="n">P</span>
+    
+    <span class="n">dydt</span> <span class="o">=</span> <span class="p">[</span><span class="n">dMdt</span><span class="p">,</span> <span class="n">dPdt</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">dydt</span>
 
-<span class="c1"># initial condition</span>
-<span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">s_0</span><span class="p">,</span> <span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">,</span> <span class="n">e1s_0</span><span class="p">,</span> <span class="n">e2p_0</span><span class="p">,</span> <span class="n">p_0</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">plot_model</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_M</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_P</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span> 
+    <span class="c1"># initial condition</span>
+    <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">M_0</span><span class="p">,</span> <span class="n">P_0</span><span class="p">]</span>
 
-<span class="c1"># time points</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="c1"># time points</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
 
-<span class="c1"># solve ODE</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">modelkp_4</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">k_1</span><span class="p">,</span> <span class="n">k_2</span><span class="p">,</span> <span class="n">k_3</span><span class="p">,</span> <span class="n">k_4</span><span class="p">,</span> <span class="n">k_5</span><span class="p">,</span> <span class="n">k_6</span><span class="p">,</span> <span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-
-<span class="c1"># plot results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e1&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e2&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e1s&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">4</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e2p&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">5</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time[s]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Concentration[M]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
+    <span class="c1"># solve ODE</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">modelD</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">))</span>
 
 
-<div class="output_area">
+    <span class="c1"># plot results</span>
+    <span class="k">if</span> <span class="n">plot_M</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;M&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plot_P</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;P&quot;</span><span class="p">)</span>
 
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="FernandoFreire_exercise4_files/FernandoFreire_exercise4_8_0.png"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Second-constraint:-Michaelis-Menten">Second constraint: Michaelis-Menten<a class="anchor-link" href="#Second-constraint:-Michaelis-Menten">&#182;</a></h2>$$
-\begin{array}{l}
-{de1s/dt = 0}\\
-{de2p/dt = 0}\\
-\end{array}
-$$<p>By imposing:</p>
-$$s*k_1 \approx k_2 \gg k_3 $$$$p*k_4 \approx k_5 \gg k_6 $$<p>We introduce directly the new constraint over <em>modelkp_2</em> method.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Numerical-simulation-modelkp_2">Numerical simulation modelkp_2<a class="anchor-link" href="#Numerical-simulation-modelkp_2">&#182;</a></h2><p>We saw that the plots pf product and substrate are not similar to previous ones.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">modelkp_2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">k_1</span><span class="p">,</span> <span class="n">k_2</span><span class="p">,</span> <span class="n">k_3</span><span class="p">,</span> <span class="n">k_4</span><span class="p">,</span> <span class="n">k_5</span><span class="p">,</span> <span class="n">k_6</span><span class="p">,</span> <span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">):</span>
-    <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
-    <span class="c1"># Constraints</span>
-    <span class="c1"># from de1s/dt = 0 and e1 = e1_0 - e1s</span>
-    <span class="n">e1s</span> <span class="o">=</span> <span class="p">(</span><span class="n">k_1</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">e1_0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">k_3</span> <span class="o">+</span> <span class="n">k_2</span> <span class="o">+</span> <span class="n">k_1</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
-    <span class="c1"># from de2p/dt = 0 and e2 = e2_0 - e2p</span>
-    <span class="n">e2p</span> <span class="o">=</span> <span class="p">(</span><span class="n">k_4</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">e2_0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">k_6</span> <span class="o">+</span> <span class="n">k_5</span> <span class="o">+</span> <span class="n">k_4</span><span class="o">*</span><span class="n">p</span><span class="p">)</span>
-    <span class="n">e1</span> <span class="o">=</span> <span class="n">e1_0</span> <span class="o">-</span> <span class="n">e1s</span>
-    <span class="n">e2</span> <span class="o">=</span> <span class="n">e2_0</span> <span class="o">-</span> <span class="n">e2p</span>
-    
-    <span class="n">dsdt</span> <span class="o">=</span> <span class="o">-</span><span class="n">k_1</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">e1</span> <span class="o">+</span> <span class="n">k_2</span> <span class="o">*</span> <span class="n">e1s</span>  <span class="o">+</span> <span class="n">k_6</span> <span class="o">*</span> <span class="n">e2p</span>
-    <span class="n">de1dt</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">de2dt</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">de1sdt</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">de2pdt</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">dpdt</span> <span class="o">=</span> <span class="n">k_3</span> <span class="o">*</span> <span class="n">e1s</span> <span class="o">-</span> <span class="n">k_4</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="n">e2</span> <span class="o">+</span> <span class="n">k_5</span> <span class="o">*</span> <span class="n">e2p</span>
-    
-    <span class="n">dydt</span> <span class="o">=</span> <span class="p">[</span><span class="n">dsdt</span><span class="p">,</span> <span class="n">de1dt</span><span class="p">,</span> <span class="n">de2dt</span><span class="p">,</span> <span class="n">de1sdt</span><span class="p">,</span> <span class="n">de2pdt</span><span class="p">,</span> <span class="n">dpdt</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">dydt</span>
-
-<span class="c1"># initial condition</span>
-<span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">s_0</span><span class="p">,</span> <span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">,</span> <span class="n">e1s_0</span><span class="p">,</span> <span class="n">e2p_0</span><span class="p">,</span> <span class="n">p_0</span><span class="p">]</span>
-
-<span class="c1"># time points</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
-
-<span class="c1"># solve ODE</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">modelkp_2</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">k_1</span><span class="p">,</span> <span class="n">k_2</span><span class="p">,</span> <span class="n">k_3</span><span class="p">,</span> <span class="n">k_4</span><span class="p">,</span> <span class="n">k_5</span><span class="p">,</span> <span class="n">k_6</span><span class="p">,</span><span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-
-<span class="c1"># plot results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e1&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e2&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e1s&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">4</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;e2p&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">5</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time[s]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Concentration[M]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="FernandoFreire_exercise4_files/FernandoFreire_exercise4_11_0.png"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Find-parameters-compatible-with-Michaelis-Menten">Find parameters compatible with Michaelis Menten<a class="anchor-link" href="#Find-parameters-compatible-with-Michaelis-Menten">&#182;</a></h2><p>We use this MM conditions to establish relations between parameters:</p>
-$$s*k_1 \approx k_2 \gg k_3 $$$$p*k_4 \approx k_5 \gg k_6 $$
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">solve_plot_models</span><span class="p">(</span><span class="n">k_1</span><span class="p">,</span> <span class="n">k_2</span><span class="p">,</span> <span class="n">k_3</span><span class="p">,</span> <span class="n">k_4</span><span class="p">,</span> <span class="n">k_5</span><span class="p">,</span> <span class="n">k_6</span><span class="p">,</span> <span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">):</span>
-    <span class="c1"># Solve model2 and model3</span>
-    <span class="n">y_2</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">modelkp_2</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">k_1</span><span class="p">,</span> <span class="n">k_2</span><span class="p">,</span> <span class="n">k_3</span><span class="p">,</span> <span class="n">k_4</span><span class="p">,</span> <span class="n">k_5</span><span class="p">,</span> <span class="n">k_6</span><span class="p">,</span><span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">))</span>
-    <span class="n">y_4</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">modelkp_4</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">k_1</span><span class="p">,</span> <span class="n">k_2</span><span class="p">,</span> <span class="n">k_3</span><span class="p">,</span> <span class="n">k_4</span><span class="p">,</span> <span class="n">k_5</span><span class="p">,</span> <span class="n">k_6</span><span class="p">,</span> <span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">))</span>    
-    <span class="c1"># Plot models</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_4</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;s_mm&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkblue&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_4</span><span class="p">[:,</span><span class="mi">5</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_2</span><span class="p">[:,</span><span class="mi">5</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;p_mm&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time[s]&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Concentration[M]&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+   
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>   
+<span class="k">for</span> <span class="n">T_0</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]:</span>
+    <span class="n">plot_model</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_P</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">total_time</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="c1"># Initial conditions</span>
-<span class="n">s_0</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">p_0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>   
+<span class="k">for</span> <span class="n">T_0</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]:</span>
+    <span class="n">plot_model</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_M</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">e1_0</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">e2_0</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">e2p_0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">e1s_0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">1000</span>
-
-<span class="n">k_1</span> <span class="o">=</span> <span class="n">k</span>
-<span class="n">k_2</span> <span class="o">=</span> <span class="n">k_1</span> <span class="o">*</span> <span class="n">s_0</span>
-<span class="n">k_3</span> <span class="o">=</span> <span class="n">k_2</span><span class="o">/</span><span class="n">k</span>
-<span class="n">k_4</span> <span class="o">=</span> <span class="n">k</span>
-<span class="n">k_5</span> <span class="o">=</span> <span class="n">k_4</span> <span class="o">*</span> <span class="n">p_0</span>
-<span class="n">k_6</span> <span class="o">=</span> <span class="n">k_5</span><span class="o">/</span><span class="n">k</span>
-
-<span class="n">solve_plot_models</span><span class="p">(</span><span class="n">k_1</span><span class="p">,</span> <span class="n">k_2</span><span class="p">,</span> <span class="n">k_3</span><span class="p">,</span> <span class="n">k_4</span><span class="p">,</span> <span class="n">k_5</span><span class="p">,</span> <span class="n">k_6</span><span class="p">,</span> <span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">)</span>
-
-<span class="c1"># Initial conditions</span>
-<span class="n">s_0</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">p_0</span> <span class="o">=</span> <span class="mf">0.5</span>
-
-<span class="n">e1_0</span> <span class="o">=</span> <span class="mf">0.05</span>
-<span class="n">e2_0</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">e2p_0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">e1s_0</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="n">k_1</span> <span class="o">=</span> <span class="n">k</span>
-<span class="n">k_2</span> <span class="o">=</span> <span class="n">k_1</span> <span class="o">*</span> <span class="n">s_0</span>
-<span class="n">k_3</span> <span class="o">=</span> <span class="n">k_2</span><span class="o">/</span><span class="n">k</span>
-<span class="n">k_4</span> <span class="o">=</span> <span class="n">k</span>
-<span class="n">k_5</span> <span class="o">=</span> <span class="n">k_4</span> <span class="o">*</span> <span class="n">p_0</span>
-<span class="n">k_6</span> <span class="o">=</span> <span class="n">k_5</span><span class="o">/</span><span class="n">k</span>
-
-<span class="n">solve_plot_models</span><span class="p">(</span><span class="n">k_1</span><span class="p">,</span> <span class="n">k_2</span><span class="p">,</span> <span class="n">k_3</span><span class="p">,</span> <span class="n">k_4</span><span class="p">,</span> <span class="n">k_5</span><span class="p">,</span> <span class="n">k_6</span><span class="p">,</span> <span class="n">e1_0</span><span class="p">,</span> <span class="n">e2_0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13577,7 +13273,7 @@ $$s*k_1 \approx k_2 \gg k_3 $$$$p*k_4 \approx k_5 \gg k_6 $$
 
 
 <div class="output_png output_subarea ">
-<img src="FernandoFreire_exercise4_files/FernandoFreire_exercise4_13_0.png"
+<img src="FernandoFreire_exercise5_files/FernandoFreire_exercise5_4_0.png"
 >
 </div>
 
@@ -13591,7 +13287,540 @@ $$s*k_1 \approx k_2 \gg k_3 $$$$p*k_4 \approx k_5 \gg k_6 $$
 
 
 <div class="output_png output_subarea ">
-<img src="FernandoFreire_exercise4_files/FernandoFreire_exercise4_13_1.png"
+<img src="FernandoFreire_exercise5_files/FernandoFreire_exercise5_4_1.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Hill-function-for-activators">Hill function for activators<a class="anchor-link" href="#Hill-function-for-activators">&#182;</a></h2><p>New activation equation for $D_i$ to $D_a$ (see python comments)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># M = mRNA</span>
+<span class="c1"># D = DNA</span>
+<span class="c1"># P = protein</span>
+<span class="c1"># T = transcription factor</span>
+<span class="c1"># Km = rate of mRNA production</span>
+<span class="c1"># Kp = rate of protein production</span>
+<span class="c1"># dm = rate of mRNA degradation</span>
+<span class="c1"># dp = rate of protein degradation</span>
+<span class="c1"># a = promoter leaking</span>
+
+<span class="c1"># T + D -Km-&gt; M + T + D, T is not consumed and nor DNA</span>
+<span class="c1"># M -Kp-&gt; P + M, not being consumed</span>
+<span class="c1"># M -dm-&gt; 0</span>
+<span class="c1"># P -dp-&gt; 0</span>
+<span class="c1"># 0 -a-&gt; M</span>
+
+<span class="c1"># Activation of DNA with n T</span>
+<span class="c1"># Di + nT &lt;-K1/K2-&gt;  K1 * Di * T**n = K2 * Da =&gt; Di * T**n = Kd * Di, where Kd = K1/K2</span>
+<span class="c1"># Dt = Di + Da</span>
+<span class="c1"># so</span>
+<span class="c1"># Da/Dt = T**n/(Kd(1+Da/Di))</span>
+
+<span class="c1"># Da/Dt = T**n/(K**n + T**n)</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">def</span> <span class="nf">hill</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">T</span><span class="o">**</span><span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="n">T</span><span class="o">**</span><span class="n">n</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">modelDH</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="p">[</span><span class="n">M</span><span class="p">,</span> <span class="n">P</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">dMdt</span> <span class="o">=</span> <span class="n">Km</span><span class="o">*</span><span class="n">hill</span><span class="p">(</span><span class="n">T_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">D_0</span> <span class="o">-</span> <span class="n">dm</span><span class="o">*</span><span class="n">M</span> <span class="o">+</span> <span class="n">a</span>
+    <span class="n">dPdt</span> <span class="o">=</span> <span class="n">Kp</span><span class="o">*</span><span class="n">M</span> <span class="o">-</span> <span class="n">dp</span><span class="o">*</span><span class="n">P</span>
+    
+    <span class="n">dydt</span> <span class="o">=</span> <span class="p">[</span><span class="n">dMdt</span><span class="p">,</span> <span class="n">dPdt</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dydt</span>
+
+<span class="c1"># initial condition</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">M_0</span><span class="p">,</span> <span class="n">P_0</span><span class="p">]</span>
+
+<span class="c1"># time points</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+<span class="c1"># solve ODE</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">modelDH</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;M&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;P&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time[s]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Concentration[M]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="FernandoFreire_exercise5_files/FernandoFreire_exercise5_6_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">def</span> <span class="nf">plot_modelDH</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_M</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_P</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span> 
+    <span class="c1"># initial condition</span>
+    <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">M_0</span><span class="p">,</span> <span class="n">P_0</span><span class="p">]</span>
+
+    <span class="c1"># time points</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+    <span class="c1"># solve ODE</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">modelDH</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+
+    <span class="c1"># plot results</span>
+    <span class="k">if</span> <span class="n">plot_M</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;M&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plot_P</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;P&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time[s]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Concentration[M]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
+   
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>   
+<span class="k">for</span> <span class="n">T_0</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
+    <span class="n">plot_modelDH</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_P</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>   
+<span class="k">for</span> <span class="n">T_0</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
+    <span class="n">plot_modelDH</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_M</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="FernandoFreire_exercise5_files/FernandoFreire_exercise5_7_0.png"
+>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="FernandoFreire_exercise5_files/FernandoFreire_exercise5_7_1.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Hill-function-for-repressors">Hill function for repressors<a class="anchor-link" href="#Hill-function-for-repressors">&#182;</a></h2><p>New repression equation for $D_a$ to $D_i$ (see python comments)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># M = mRNA</span>
+<span class="c1"># D = DNA</span>
+<span class="c1"># P = protein</span>
+<span class="c1"># T = transcription factor</span>
+<span class="c1"># Km = rate of mRNA production</span>
+<span class="c1"># Kp = rate of protein production</span>
+<span class="c1"># dm = rate of mRNA degradation</span>
+<span class="c1"># dp = rate of protein degradation</span>
+<span class="c1"># a = promoter leaking</span>
+
+<span class="c1"># T + D -Km-&gt; M + T + D, T is not consumed and nor DNA</span>
+<span class="c1"># M -Kp-&gt; P + M, not being consumed</span>
+<span class="c1"># M -dm-&gt; 0</span>
+<span class="c1"># P -dp-&gt; 0</span>
+<span class="c1"># 0 -a-&gt; M</span>
+
+<span class="c1"># Da + nT &lt;-K1/K2-&gt;  Di</span>
+<span class="c1"># implies Da/Di = K**d/(T**n + K**n)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">def</span> <span class="nf">hill_repress</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">K</span><span class="o">**</span><span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="n">T</span><span class="o">**</span><span class="n">n</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">modelDHR</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="p">[</span><span class="n">M</span><span class="p">,</span> <span class="n">P</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">dMdt</span> <span class="o">=</span> <span class="n">Km</span><span class="o">*</span><span class="n">hill_repress</span><span class="p">(</span><span class="n">T_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">D_0</span> <span class="o">-</span> <span class="n">dm</span><span class="o">*</span><span class="n">M</span> <span class="o">+</span> <span class="n">a</span>
+    <span class="n">dPdt</span> <span class="o">=</span> <span class="n">Kp</span><span class="o">*</span><span class="n">M</span> <span class="o">-</span> <span class="n">dp</span><span class="o">*</span><span class="n">P</span>
+    
+    <span class="n">dydt</span> <span class="o">=</span> <span class="p">[</span><span class="n">dMdt</span><span class="p">,</span> <span class="n">dPdt</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dydt</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="k">def</span> <span class="nf">plot_modelDHR</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_M</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_P</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span> 
+    <span class="c1"># initial condition</span>
+    <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">M_0</span><span class="p">,</span> <span class="n">P_0</span><span class="p">]</span>
+
+    <span class="c1"># time points</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+    <span class="c1"># solve ODE</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">modelDHR</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+
+    <span class="c1"># plot results</span>
+    <span class="k">if</span> <span class="n">plot_M</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;M&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plot_P</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;P&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time[s]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Concentration[M]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
+   
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>   
+<span class="k">for</span> <span class="n">T_0</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
+    <span class="n">plot_modelDHR</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_P</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>   
+<span class="k">for</span> <span class="n">T_0</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
+    <span class="n">plot_modelDHR</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T_0</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_M</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="FernandoFreire_exercise5_files/FernandoFreire_exercise5_9_0.png"
+>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="FernandoFreire_exercise5_files/FernandoFreire_exercise5_9_1.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Possitive-feedback">Possitive feedback<a class="anchor-link" href="#Possitive-feedback">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># M = mRNA</span>
+<span class="c1"># D = DNA</span>
+<span class="c1"># P = protein</span>
+<span class="c1"># T = transcription factor</span>
+<span class="c1"># Km = rate of mRNA production</span>
+<span class="c1"># Kp = rate of protein production</span>
+<span class="c1"># dm = rate of mRNA degradation</span>
+<span class="c1"># dp = rate of protein degradation</span>
+<span class="c1"># a = promoter leaking</span>
+
+<span class="c1"># P + D -Km-&gt; M + D, D is not consumed and nor DNA</span>
+<span class="c1"># M -Kp-&gt; P + M, not being consumed</span>
+<span class="c1"># M -dm-&gt; 0</span>
+<span class="c1"># P -dp-&gt; 0</span>
+<span class="c1"># 0 -a-&gt; M</span>
+
+<span class="c1"># Da + nT &lt;-K1/K2-&gt;  Di</span>
+<span class="c1"># implies Da/Di = K**d/(T**n + K**n)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">hill</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">T</span><span class="o">**</span><span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="n">T</span><span class="o">**</span><span class="n">n</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">modelP</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="p">[</span><span class="n">M</span><span class="p">,</span> <span class="n">P</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">dMdt</span> <span class="o">=</span> <span class="n">Km</span><span class="o">*</span><span class="n">hill</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">D_0</span> <span class="o">-</span> <span class="n">dm</span><span class="o">*</span><span class="n">M</span> <span class="o">+</span> <span class="n">a</span>
+    <span class="n">dPdt</span> <span class="o">=</span> <span class="n">Kp</span><span class="o">*</span><span class="n">M</span> <span class="o">-</span> <span class="n">dp</span><span class="o">*</span><span class="n">P</span>
+    
+    <span class="n">dydt</span> <span class="o">=</span> <span class="p">[</span><span class="n">dMdt</span><span class="p">,</span> <span class="n">dPdt</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dydt</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="k">def</span> <span class="nf">plot_modelP</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_M</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_P</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span> 
+    <span class="c1"># initial condition</span>
+    <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">M_0</span><span class="p">,</span> <span class="n">P_0</span><span class="p">]</span>
+
+    <span class="c1"># time points</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+    <span class="c1"># solve ODE</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">modelP</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+
+    <span class="c1"># plot results</span>
+    <span class="k">if</span> <span class="n">plot_M</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;M(n= &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plot_P</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;P(n= &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time[s]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Concentration[M]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
+   
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>   
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">plot_modelP</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_P</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>   
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">plot_modelP</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_M</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="FernandoFreire_exercise5_files/FernandoFreire_exercise5_11_0.png"
+>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="FernandoFreire_exercise5_files/FernandoFreire_exercise5_11_1.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Negative-feedback">Negative feedback<a class="anchor-link" href="#Negative-feedback">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># M = mRNA</span>
+<span class="c1"># D = DNA</span>
+<span class="c1"># P = protein</span>
+<span class="c1"># T = transcription factor</span>
+<span class="c1"># Km = rate of mRNA production</span>
+<span class="c1"># Kp = rate of protein production</span>
+<span class="c1"># dm = rate of mRNA degradation</span>
+<span class="c1"># dp = rate of protein degradation</span>
+<span class="c1"># a = promoter leaking</span>
+
+<span class="c1"># P + D -Km-&gt; M + D, D is not consumed and nor DNA</span>
+<span class="c1"># M -Kp-&gt; P + M, not being consumed</span>
+<span class="c1"># M -dm-&gt; 0</span>
+<span class="c1"># P -dp-&gt; 0</span>
+<span class="c1"># 0 -a-&gt; M</span>
+
+<span class="c1"># Da + nT &lt;-K1/K2-&gt;  Di</span>
+<span class="c1"># implies Da/Di = K**d/(T**n + K**n)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">hill</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">K</span><span class="o">**</span><span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="n">T</span><span class="o">**</span><span class="n">n</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">modelP</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="p">[</span><span class="n">M</span><span class="p">,</span> <span class="n">P</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">dMdt</span> <span class="o">=</span> <span class="n">Km</span><span class="o">*</span><span class="n">hill</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">D_0</span> <span class="o">-</span> <span class="n">dm</span><span class="o">*</span><span class="n">M</span> <span class="o">+</span> <span class="n">a</span>
+    <span class="n">dPdt</span> <span class="o">=</span> <span class="n">Kp</span><span class="o">*</span><span class="n">M</span> <span class="o">-</span> <span class="n">dp</span><span class="o">*</span><span class="n">P</span>
+    
+    <span class="n">dydt</span> <span class="o">=</span> <span class="p">[</span><span class="n">dMdt</span><span class="p">,</span> <span class="n">dPdt</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dydt</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="k">def</span> <span class="nf">plot_modelP</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_M</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_P</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span> 
+    <span class="c1"># initial condition</span>
+    <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">M_0</span><span class="p">,</span> <span class="n">P_0</span><span class="p">]</span>
+
+    <span class="c1"># time points</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+    <span class="c1"># solve ODE</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">modelP</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+
+    <span class="c1"># plot results</span>
+    <span class="k">if</span> <span class="n">plot_M</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;M(n= &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plot_P</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;P(n= &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time[s]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Concentration[M]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;best&quot;</span><span class="p">)</span>
+   
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>   
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">plot_modelP</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_P</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>   
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">plot_modelP</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Km</span><span class="p">,</span> <span class="n">Kp</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">D_0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">plot_M</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="FernandoFreire_exercise5_files/FernandoFreire_exercise5_13_0.png"
+>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="FernandoFreire_exercise5_files/FernandoFreire_exercise5_13_1.png"
 >
 </div>
 
@@ -13610,13 +13839,13 @@ $$s*k_1 \approx k_2 \gg k_3 $$$$p*k_4 \approx k_5 \gg k_6 $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
-jupyter nbconvert --to<span class="o">=</span>latex --template<span class="o">=</span>~/report.tplx FernandoFreire_exercise4.ipynb <span class="m">1</span>&gt; /dev/null <span class="m">2</span>&gt; /dev/null
-/Library/TeX/texbin/pdflatex -shell-escape FernandoFreire_exercise4 <span class="m">1</span>&gt; /dev/null <span class="m">2</span>&gt; /dev/null
-jupyter nbconvert --to html_toc FernandoFreire_exercise4.ipynb <span class="m">1</span>&gt; /dev/null <span class="m">2</span>&gt; /dev/null
+jupyter nbconvert --to<span class="o">=</span>latex --template<span class="o">=</span>~/report.tplx FernandoFreire_exercise5.ipynb <span class="m">1</span>&gt; /dev/null <span class="m">2</span>&gt; /dev/null
+/Library/TeX/texbin/pdflatex -shell-escape FernandoFreire_exercise5 <span class="m">1</span>&gt; /dev/null <span class="m">2</span>&gt; /dev/null
+jupyter nbconvert --to html_toc FernandoFreire_exercise5.ipynb <span class="m">1</span>&gt; /dev/null <span class="m">2</span>&gt; /dev/null
 </pre></div>
 
     </div>
