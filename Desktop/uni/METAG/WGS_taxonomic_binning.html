@@ -13329,11 +13329,17 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Bact_R1</strong>
-<img src="virome_high.png" alt="Bact_R1" title="Taxonomy for Bact_R1"></p>
-<p><strong>Vir1_R1</strong>
-<img src="virome_low.png" alt="Vir_R1" title="Taxonomy for Vir_R1"></p>
-<p><strong>Comparison of biodiversities</strong>
+<p><strong>Vir_R1 graphical word cloud</strong>
+<img src="Vir_graphical.jpg" alt="Vir_R1_0" title="Words cloud signature for Vir_R1"></p>
+<p><strong>Bact_R1 graphical word cloud</strong>
+<img src="Bact_graphical.jpg" alt="Bact_R1_0" title="Word Cloud signature for Vir_R1"></p>
+<p><strong>Bact_R1 MEGAN</strong>
+<img src="virome_high.png" alt="Bact_R1_1" title="Taxonomy for Bact_R1"></p>
+<p><strong>Vir_R1 MEGAN</strong>
+<img src="Vir_taxonomy.jpg" alt="Vir_R1_1" title="Taxonomy for Vir_R1"></p>
+<p><strong>Bact_R1 paramater set 2 MEGAN</strong>
+<img src="virome_low.png" alt="Vir_R1_2" title="Taxonomy for Bact_R1 parameter set 2"></p>
+<p><strong>Comparison of MEGAN executions for Bact</strong>
 <img src="compare.png" alt="Compare" title="Comparison of biodiversities"></p>
 
 </div>
@@ -13342,7 +13348,13 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Abstract">Abstract<a class="anchor-link" href="#Abstract">&#182;</a></h2><table>
+<h2 id="Abstract">Abstract<a class="anchor-link" href="#Abstract">&#182;</a></h2><h3 id="Pipeline-comments">Pipeline comments<a class="anchor-link" href="#Pipeline-comments">&#182;</a></h3><p><strong>Sistema de ejecución</strong></p>
+<p>Hemos empleado la misma estrategia de la anterior práctica: lanzar los comandos bash desde un jupyter notebook, de forma que tenemos almacenadas las ejecuciones y las salidas en el mismo sitio donde documentamos. Además nos facilita las reejecuciones.</p>
+<p>Hemos probado a obtener la estadísticas de los proceso automáticamente para generar desde la propia pipeline todos los datos solicitados, ya que las salidas de las ejecuciones pueden ser leidas y procesadas desde python y lo hemos conseguido en parte: los programas sin interfaz línea de comandos FASTQ y MEGAN6 no facilitan estas automatizaciones. <em>No obstante no hemos podido investigar con más atención este punto (no descartamos su inviabilidad)</em>.</p>
+<p><strong>Parameters</strong></p>
+<p>At <em>kneaddata</em> we employed the trimming sliding window trimmomatic option: starts scanning at the 5-end and clips the read once the average quality within the window falls below a threshold. And also we adjust the <em>MINLEN</em> parameter: drop the read if it is below a specified length. We use a conservative length of 200 bp.</p>
+<p>After decontamination and alignments only are retained the 4% of sequences of Bact_R1 and the 20% of Vir_R1 as we show in the reduction of the counters across the different steps:</p>
+<table>
 <thead><tr>
 <th style="text-align:left">Sample</th>
 <th style="text-align:right">Vir_R1</th>
@@ -13354,42 +13366,42 @@ $( document ).ready(function(){
 <tbody>
 <tr>
 <td style="text-align:left">raw single</td>
-<td style="text-align:right">10000</td>
-<td style="text-align:right">20000</td>
-<td style="text-align:left">100%</td>
-<td style="text-align:left">100%</td>
+<td style="text-align:right">100000</td>
+<td style="text-align:right">200000</td>
+<td style="text-align:left">100</td>
+<td style="text-align:left">100</td>
 </tr>
 <tr>
 <td style="text-align:left">trimmed single</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">0</td>
+<td style="text-align:right">63602</td>
+<td style="text-align:right">127652</td>
+<td style="text-align:left">63,60</td>
+<td style="text-align:left">63,83</td>
 </tr>
 <tr>
 <td style="text-align:left">decontaminaded Human and PhiX</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">0</td>
+<td style="text-align:right">63331</td>
+<td style="text-align:right">32358</td>
+<td style="text-align:left">63,33</td>
+<td style="text-align:left">16,18</td>
 </tr>
 <tr>
 <td style="text-align:left">final single</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">0</td>
+<td style="text-align:right">63331</td>
+<td style="text-align:right">32358</td>
+<td style="text-align:left">63,33</td>
+<td style="text-align:left">16,18</td>
 </tr>
 <tr>
 <td style="text-align:left">diamond vs viral protein db</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">0</td>
+<td style="text-align:right">12725</td>
+<td style="text-align:right">1288</td>
+<td style="text-align:left">20,09</td>
+<td style="text-align:left">3,98</td>
 </tr>
 </tbody>
 </table>
-
+<h3 id="Results-comments">Results comments<a class="anchor-link" href="#Results-comments">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -14347,7 +14359,7 @@ Vir1_R2_100000.fq:100000
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="k">import</span> <span class="n">DataFrame</span>
@@ -14371,30 +14383,6 @@ Vir1_R2_100000.fq:100000
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>| Sample                        |   Vir1_R1 |   Bact_R1 | Vir1_R1(%)   | Bact_R1(%)   |
-|:------------------------------|----------:|----------:|:-------------|:-------------|
-| raw single                    |     10000 |     20000 | 100%         | 100%         |
-| trimmed single                |         0 |         0 | 0            | 0            |
-| decontaminaded Human and PhiX |         0 |         0 | 0            | 0            |
-| final single                  |         0 |         0 | 0            | 0            |
-| diamond vs viral protein db   |         0 |         0 | 0            | 0            |
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -14405,7 +14393,7 @@ Vir1_R2_100000.fq:100000
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
