@@ -13330,17 +13330,17 @@ $( document ).ready(function(){
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Vir_R1 graphical word cloud</strong>
-<img src="Vir_graphical.jpg" alt="Vir_R1_0" title="Words cloud signature for Vir_R1"></p>
+<img src="Vir_graphical.png" alt="Word cloud signature for Vir_R1" title="Word cloud signature for Vir_R1"></p>
 <p><strong>Bact_R1 graphical word cloud</strong>
-<img src="Bact_graphical.jpg" alt="Bact_R1_0" title="Word Cloud signature for Vir_R1"></p>
+<img src="Bact_graphical.png" alt="Word Cloud signature for Bact_R1" title="Word Cloud signature for Vir_R1"></p>
 <p><strong>Bact_R1 MEGAN</strong>
-<img src="virome_high.png" alt="Bact_R1_1" title="Taxonomy for Bact_R1"></p>
+<img src="virome_high.png" alt="Taxonomy for Bact_R1" title="Taxonomy for Bact_R1"></p>
 <p><strong>Vir_R1 MEGAN</strong>
-<img src="Vir_taxonomy.jpg" alt="Vir_R1_1" title="Taxonomy for Vir_R1"></p>
+<img src="Vir_taxonomy.jpg" alt="Taxonomy for Vir_R1" title="Taxonomy for Vir_R1"></p>
 <p><strong>Bact_R1 paramater set 2 MEGAN</strong>
-<img src="virome_low.png" alt="Vir_R1_2" title="Taxonomy for Bact_R1 parameter set 2"></p>
+<img src="virome_low.png" alt="Taxonomy for Bact_R1 parameter set 2" title="Taxonomy for Bact_R1 parameter set 2"></p>
 <p><strong>Comparison of MEGAN executions for Bact</strong>
-<img src="compare.png" alt="Compare" title="Comparison of biodiversities"></p>
+<img src="compare.png" alt="Comparison of Bact1 MEGAN executions" title="Comparison parameter sets Bact1"></p>
 
 </div>
 </div>
@@ -13348,9 +13348,9 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Abstract">Abstract<a class="anchor-link" href="#Abstract">&#182;</a></h2><h3 id="Pipeline-comments">Pipeline comments<a class="anchor-link" href="#Pipeline-comments">&#182;</a></h3><p><strong>Sistema de ejecución</strong></p>
-<p>Hemos empleado la misma estrategia de la anterior práctica: lanzar los comandos bash desde un jupyter notebook, de forma que tenemos almacenadas las ejecuciones y las salidas en el mismo sitio donde documentamos. Además nos facilita las reejecuciones.</p>
-<p>Hemos probado a obtener la estadísticas de los proceso automáticamente para generar desde la propia pipeline todos los datos solicitados, ya que las salidas de las ejecuciones pueden ser leidas y procesadas desde python y lo hemos conseguido en parte: los programas sin interfaz línea de comandos FASTQ y MEGAN6 no facilitan estas automatizaciones. <em>No obstante no hemos podido investigar con más atención este punto (no descartamos su inviabilidad)</em>.</p>
+<h2 id="Abstract">Abstract<a class="anchor-link" href="#Abstract">&#182;</a></h2><h3 id="Pipeline-comments">Pipeline comments<a class="anchor-link" href="#Pipeline-comments">&#182;</a></h3><p><strong>Execution procedure</strong></p>
+<p>We have used the same strategy as in the previous practice: launch the bash commands from a jupyter notebook, so that we have stored the executions and the outputs in the same place where we document. It also facilitates the re-executions. We opted also for the use of host machine sending the commands to guest linux machine by ssh commands, once correctly configured the protocol into linux guest.</p>
+<p>We have tried to obtain the statistics of the processes automatically to generate from the pipeline all the requested data, since the outputs of the executions can be read and processed from python and we have achieved it in part: the programs without command line interface FASTQ and MEGAN6 do not ease these automations. <em>However, we have not been able to investigate this point more longer)</em>.</p>
 <p><strong>Parameters</strong></p>
 <p>At <em>kneaddata</em> we employed the trimming sliding window trimmomatic option: starts scanning at the 5-end and clips the read once the average quality within the window falls below a threshold. And also we adjust the <em>MINLEN</em> parameter: drop the read if it is below a specified length. We use a conservative length of 200 bp.</p>
 <p>After decontamination and alignments only are retained the 4% of sequences of Bact_R1 and the 20% of Vir_R1 as we show in the reduction of the counters across the different steps:</p>
@@ -13401,7 +13401,12 @@ $( document ).ready(function(){
 </tr>
 </tbody>
 </table>
-<h3 id="Results-comments">Results comments<a class="anchor-link" href="#Results-comments">&#182;</a></h3>
+<h3 id="Results-comments">Results comments<a class="anchor-link" href="#Results-comments">&#182;</a></h3><p>The reduction of these counters on both samples shows that in the decontamination step many more readings have been eliminated for <em>Bac</em>. As the sequencing technology is identical, this seems to indicate that the bacteriome sample was very contaminated with the human genome. In the end, the bacterioea remains reduced to 16% while the virome retains 63% of sequences, prior to the taxonomic analysis. It is coherent with the fact that no experimental previous procedure has been applied to this sample to isolate the virome from the bacteriome or from the genome of the human host.</p>
+<p>However, the quality (analyzed with FASTQ) of both samples, once the filtering process was executed, has improved considerably compared with the initial quality.</p>
+<p>The mapping against the database of viral proteins carried out by diamond also indicates a lower number of hits than in the case of the virome: the reads are reduced to one fifth, while the virome is reduced by only one fourth. This indicates that many non-viral sequences still exist within the sample (although it can also be interpreted as indicating that the sample may contain traces of viruses not referenced in the reference database).</p>
+<p>Another relevant fact is that after the analysis made with MEGA, we observed a greater viral biodiversity in the bacteriome (it can be clearly seen in the word cloud output format offered by the application) These traces must be provided by the bacterial genome, since it is assumed that we are analyzing the same viral ecosystem in both samples, this is coherent with the idea that bacteria (and other taxa) have been incorporating across evolution pieces of virus DNA, either directly from viruses or through horizontal transfer from other bacteria.</p>
+<p>One of the mechanisms by which the viral genome is incorporated into the bacterial one, could be related with the <em>CRISPR-CAS</em> subsystem, being integrated in the <em>CRISPR</em> locus, provided that these inserts being long enough to throw positive matchings against the reference virome.</p>
+
 </div>
 </div>
 </div>
@@ -14393,7 +14398,7 @@ Vir1_R2_100000.fq:100000
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
